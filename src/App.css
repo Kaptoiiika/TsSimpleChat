@@ -1,0 +1,49 @@
+.App-header {
+  position: fixed;
+  background-color: #202225;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+.App {
+  position: fixed;
+  text-align: center;
+  transform: translate(0, 12px);
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #202225;
+}
+
+.App {
+  display: grid;
+  grid-template-areas: "Servers Chanels Mesenger Members ";
+  grid-template-columns: 70px 300px 6fr 1fr;
+  grid-template-rows: 100%;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 5px 0;
+  border-bottom: 1px solid black;
+}
+
+.Servers {
+  grid-area: Servers;
+  background-color: #202225;
+}
+.Chanels {
+  grid-area: Chanels;
+}
+.Mesenger {
+  grid-area: Mesenger;
+  
+}
+.Members {
+  grid-area: Members;
+  border-radius: 0px 25px 0 0;
+  background-color: #333333;
+}

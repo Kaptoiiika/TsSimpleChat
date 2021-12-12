@@ -1,0 +1,29 @@
+.Chanels {
+  border-radius: 25px 0 0 0;
+  background-color: #2f3136;
+
+  display: grid;
+  grid-template-areas: "Chanels-header" " chanels-list" " chanels-fotter ";
+  grid-template-rows: 50px 1fr 70px;
+}
+.Chanels-header {
+  grid-area: Chanels-header;
+}
+.chanels-list {
+  grid-area: chanels-list;
+  height: 100%;
+}
+.chanels-fotter {
+  grid-area: chanels-fotter;
+  vertical-align: bottom;
+  background-color: #292b2f;
+}
+.chanels-item {
+  height: 35px;
+  width: 100%;
+  
+
+
+  margin: 1px 0;
+  size: 50px;
+}

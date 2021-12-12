@@ -1,0 +1,21 @@
+.Mesage {
+  display: grid;
+  width: 100%;
+  grid-template-areas:
+    "userIcon userName"
+    "userIcon  msg";
+  grid-template-columns: 40px 1fr;
+  justify-items: start;
+}
+.userIcon {
+  width: 40px;
+  grid-area: userIcon;
+}
+.userName {
+  margin: 0;
+  grid-area: userName;
+}
+.msg {
+  margin: 0;
+  grid-area: msg;
+}
