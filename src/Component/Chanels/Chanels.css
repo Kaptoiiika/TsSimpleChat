@@ -1,6 +1,10 @@
+.Main{
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
 .Chanels {
   border-radius: 25px 0 0 0;
-  background-color: #2f3136;
+  background-color: hsl(223, 7%, 20%);
 
   display: grid;
   grid-template-areas: "Chanels-header" " chanels-list" " chanels-fotter ";
@@ -19,11 +23,9 @@
   background-color: #292b2f;
 }
 .chanels-item {
+  font-size: 20px;
   height: 35px;
   width: 100%;
-  
-
-
   margin: 1px 0;
   size: 50px;
 }

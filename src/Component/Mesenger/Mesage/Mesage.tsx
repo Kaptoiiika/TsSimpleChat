@@ -1,14 +1,27 @@
-import './Message.css'
-function Mesage({ Mesage }: any) {
-  const { userId, msg } = Mesage
-  console.log(userId, msg)
+import "./Message.css"
+import users from "../../../Data/Users"
+import { defaultIcon } from "../../unknowComponent/defaultIcons"
+import { messages } from "../../../types/Servers"
+
+type Props = {
+  message: messages
+}
+function Message(props: Props) {
+  const { id, userId, msg } = props.message
+  const user = users[userId]
   return (
-    <li className="Mesage">
-      <img className="userIcon" src={`https://cdn.discordapp.com/avatars/321282827909857280/b3b2fb541418cd179898c1912b00ead0.png?size=80`}/>
-      <h5 className="userName">{userId}</h5>
-      <p className="msg">{msg}</p>
+    <li className="Mesage" id={`messageId:${id}`}>
+      <img
+        className="userIcon"
+        src={user.icon ? user.icon : defaultIcon}
+        alt=""
+      />
+      <div className="user">
+        <p className="userName">{user.name}</p>
+        <p className="msg">{msg}</p>
+      </div>
     </li>
   )
 }
 
-export default Mesage
+export default Message

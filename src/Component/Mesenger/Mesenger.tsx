@@ -1,14 +1,22 @@
 import "./Mesenger.css"
-import Mesage from "./Mesage/Mesage"
+import Message from "./Mesage/Mesage"
+import { messages } from "../../types/Servers"
 
-function Mesenger() {
+type Props = {
+  messages: messages[]
+  chanelName: string
+}
+
+function Mesenger(props: Props) {
+  const { messages, chanelName } = props
+  
   return (
     <div className="Mesenger">
-      <h3 className="header Mesenger-header">SomeServer</h3>
+      <h3 className="header Mesenger-header">{chanelName}</h3>
       <ul className="Mesenger-list">
-          <Mesage Mesage={{ userId: 0, msg: "hello world" }} />
-          <Mesage Mesage={{ userId: 1, msg: "Second world" }} />
-          <Mesage Mesage={{ userId: 2, msg: "The hell" }} />
+        {messages.map((mesage: messages) => {
+          return <Message message={mesage} />
+        })}
       </ul>
       <div className="Mesenger-fotter">
         <input

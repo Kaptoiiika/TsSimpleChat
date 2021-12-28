@@ -2,8 +2,8 @@
   background-color: #36393f;
 
   display: grid;
-  grid-template-areas: "Mesenger-header" " Mesenger-list" " Mesenger-fotter ";
-  grid-template-rows: 50px 1fr 100px;
+  grid-template-areas: "Mesenger-header" "Mesenger-list" "Mesenger-fotter ";
+  grid-template-rows: 50px 1fr 50px 30px;
 }
 .Mesenger-header {
   grid-area: Mesenger-header;
@@ -14,15 +14,17 @@
   padding-left: 10px;
 }
 .Mesenger-fotter {
+  display: flex;
   margin: 0 15px;
-  border-radius: 15px;
+  border-radius: 15px ;
   grid-area: Mesenger-fotter;
   vertical-align: bottom;
   background-color: #40444b;
+  align-items: center;
 }
 .Mesenger-input {
   border: 0;
   background-color: #40444b;
   color: white;
-  width: 100%;
+  width:95%;
 }

@@ -18,8 +18,8 @@
 
 .App {
   display: grid;
-  grid-template-areas: "Servers Chanels Mesenger Members ";
-  grid-template-columns: 70px 300px 6fr 1fr;
+  grid-template-columns: 70px 1fr 250px;
+  flex-direction: row;
   grid-template-rows: 100%;
 }
 .header {
@@ -31,19 +31,4 @@
   border-bottom: 1px solid black;
 }
 
-.Servers {
-  grid-area: Servers;
-  background-color: #202225;
-}
-.Chanels {
-  grid-area: Chanels;
-}
-.Mesenger {
-  grid-area: Mesenger;
-  
-}
-.Members {
-  grid-area: Members;
-  border-radius: 0px 25px 0 0;
-  background-color: #333333;
-}
+

@@ -13,9 +13,6 @@ function App() {
     <header className="App-header"></header>
     <div className="App">
       <Servers />
-      <Chanels />
-      <Mesenger/>
-      <Members/>
     </div>
     </>
   )

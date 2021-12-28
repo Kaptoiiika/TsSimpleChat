@@ -3,4 +3,8 @@
   width: 50px;
   border-radius: 50%;
   background-color: #36393f;
+  z-index: -50;
+}
+.serversButton{
+  z-index: 1;
 }

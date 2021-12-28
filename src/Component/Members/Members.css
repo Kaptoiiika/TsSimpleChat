@@ -1,0 +1,36 @@
+.Members {
+  background-color: #2f3136;
+
+  display: grid;
+  grid-template-areas: "Members-header" "Members-list";
+  grid-template-rows: 50px 1fr;
+}
+.Members-header {
+  grid-area: Members-header;
+}
+.Members-list {
+  grid-area: Members-list;
+
+  height: 100%;
+  padding-left: 10px;
+}
+
+.Member {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 0 5px;
+}
+.Member-userIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.Member-user {
+  margin: 0 0 0 8px;
+}
+.Member-userName {
+  margin: 0;
+}
+.Member-userStatus {
+  margin: 0;
+}
