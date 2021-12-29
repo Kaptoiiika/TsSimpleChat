@@ -23,7 +23,7 @@ function Members(props: Props) {
       <ul className="Members-list">
         {users.map((user: user, index: number) => {
           return (
-            <div className="Member">
+            <div className="Member" key={user.id}>
               <img
                 className="Member-userIcon"
                 src={user.icon ? user.icon : defaultIcon}

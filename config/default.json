@@ -1,0 +1,5 @@
+{
+  "port": 3030,
+  "mongoURL":"mongodb+srv://kaptoiiika:123@cluster0.yzzks.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtKey":"haha"
+}

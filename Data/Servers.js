@@ -1,9 +1,7 @@
-import { server } from "../types/Servers"
-
-export const serverList: server[] = [
+export const serverList = [
   {
     id: 0,
-    name: "Forest",
+    name: "Forest 🍰",
     icon: "https://cdn.discordapp.com/avatars/321282827909857280/b3b2fb541418cd179898c1912b00ead0.png?size=80",
     discription: "🧦🎩",
     chanels: [

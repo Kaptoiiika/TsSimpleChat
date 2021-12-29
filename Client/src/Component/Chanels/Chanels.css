@@ -12,6 +12,7 @@
 }
 .Chanels-header {
   grid-area: Chanels-header;
+  background-color: #2f3136;
 }
 .chanels-list {
   grid-area: chanels-list;

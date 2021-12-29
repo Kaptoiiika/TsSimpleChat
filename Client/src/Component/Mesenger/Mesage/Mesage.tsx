@@ -1,5 +1,5 @@
 import "./Message.css"
-import users from "../../../Data/Users"
+import users from "../../../data/Users"
 import { defaultIcon } from "../../unknowComponent/defaultIcons"
 import { messages } from "../../../types/Servers"
 

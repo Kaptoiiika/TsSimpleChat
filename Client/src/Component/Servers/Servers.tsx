@@ -3,13 +3,19 @@ import { Button } from "@material-ui/core"
 import { GiHouse, GiBackboneShell, GiBull } from "react-icons/gi"
 import { BiPlus, BiCaretDown, BiCaretUp } from "react-icons/bi"
 import { useState } from "react"
-import { serverList } from "../../Data/Servers"
 import Chanels from "../Chanels/Chanels"
 import Members from "../Members/Members"
-import usersList from "../../Data/Users"
 import { member } from "../../types/Servers"
 
-function Servers() {
+import usersList from "../../data/Users"
+import { serverList } from "../../data/Servers"
+
+type Props = {
+  isOnly?: boolean
+}
+
+function Servers(props: Props) {
+  const { isOnly } = props
   const iconColor = "#3ba55d"
   const [currentServer, setCurrentServer] = useState(0)
 
@@ -27,6 +33,7 @@ function Servers() {
   })
   const chanels = serverList[currentServer].chanels
   const serverName = serverList[currentServer].name
+  const serverId = serverList[currentServer].id
 
   function home() {
     console.log("home")
@@ -79,8 +86,7 @@ function Servers() {
           <BiPlus color={iconColor} className="serverIcon" size="50px" />
         </Button>
       </div>
-
-      <Chanels chanels={chanels} serverName={serverName} />
+      <Chanels chanels={chanels} serverId={serverId} serverName={serverName} />
       <Members users={users} />
     </>
   )

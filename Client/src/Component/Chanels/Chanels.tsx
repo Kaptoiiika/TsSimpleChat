@@ -8,13 +8,15 @@ import "./Chanels.css"
 type Props = {
   chanels: chanel[]
   serverName: string
+  serverId: number
 }
 
 function Chanels(props: Props) {
   const [currentChanel, setCurrentChanel] = useState(0)
-  const { chanels, serverName } = props
+  const { chanels, serverName, serverId } = props
 
   const chanelName = chanels[currentChanel].name
+  const chanelId = chanels[currentChanel].id
 
   function changeChanel(id: number) {
     setCurrentChanel(id)
@@ -33,6 +35,7 @@ function Chanels(props: Props) {
                   changeChanel(chanel.id)
                 }}
                 className={`chanels-item`}
+                key={chanel.id}
               >
                 {chanel.name}
               </Button>
@@ -45,6 +48,8 @@ function Chanels(props: Props) {
       <Mesenger
         messages={chanels[currentChanel].messages}
         chanelName={chanelName}
+        chanelId={chanelId}
+        serverId={serverId}
       />
     </div>
   )
