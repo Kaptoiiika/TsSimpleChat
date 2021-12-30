@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { chanel } from "../../types/Servers"
 import Mesenger from "../Mesenger/Mesenger"
 
 import Button from "@material-ui/core/ButtonBase"
 import "./Chanels.css"
+import { AuthContext } from "../../context/AuthContext"
 
 type Props = {
   chanels: chanel[]
@@ -12,6 +13,7 @@ type Props = {
 }
 
 function Chanels(props: Props) {
+
   const [currentChanel, setCurrentChanel] = useState(0)
   const { chanels, serverName, serverId } = props
 

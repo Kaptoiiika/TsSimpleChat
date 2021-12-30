@@ -1,8 +1,11 @@
-import express, { Router } from "express"
-import config from "config"
-import mongoose from "mongoose"
+const express = require("express")
+const config = require("config")
+const mongoose = require("mongoose")
 
 const app = express()
+
+app.use(express.json({extended:true}))
+app.use("/api/user", require("./routes/user.routes.js"))
 
 const PORT = config.get("port")
 
@@ -21,6 +24,6 @@ async function start() {
   }
 }
 
-// app.use("/api/servers", require("./routes/servers.routes.js"))
+
 
 start()

@@ -1,48 +1,24 @@
-import "./Servers.css"
+import "./NavBar.css"
 import { Button } from "@material-ui/core"
 import { GiHouse, GiBackboneShell, GiBull } from "react-icons/gi"
 import { BiPlus, BiCaretDown, BiCaretUp } from "react-icons/bi"
-import { useState } from "react"
-import Chanels from "../Chanels/Chanels"
-import Members from "../Members/Members"
-import { member } from "../../types/Servers"
-
-import usersList from "../../data/Users"
-import { serverList } from "../../data/Servers"
 
 type Props = {
-  isOnly?: boolean
+  setServer: any
 }
 
 function Servers(props: Props) {
-  const { isOnly } = props
+  const { setServer } = props
   const iconColor = "#3ba55d"
-  const [currentServer, setCurrentServer] = useState(0)
-
-  const users = serverList[currentServer].members.map((user: member) => {
-    return {
-      id: usersList[user.id].id,
-      name: usersList[user.id].name,
-      icon: usersList[user.id].icon,
-      status: usersList[user.id].status,
-      contact: usersList[user.id].contact,
-
-      permison: user.permison,
-      color: user.color,
-    }
-  })
-  const chanels = serverList[currentServer].chanels
-  const serverName = serverList[currentServer].name
-  const serverId = serverList[currentServer].id
 
   function home() {
-    console.log("home")
+    setServer(-1)
   }
   function addServer() {
-    console.log("addServer")
+    setServer(-2)
   }
   function toChangeServer(serverId: number) {
-    setCurrentServer(serverId)
+    setServer(serverId)
   }
 
   return (
@@ -86,8 +62,6 @@ function Servers(props: Props) {
           <BiPlus color={iconColor} className="serverIcon" size="50px" />
         </Button>
       </div>
-      <Chanels chanels={chanels} serverId={serverId} serverName={serverName} />
-      <Members users={users} />
     </>
   )
 }

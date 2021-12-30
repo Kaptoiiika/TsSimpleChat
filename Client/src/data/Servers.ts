@@ -65,9 +65,6 @@ export const serverList: server[] = [
         id: 1,
         color: "#a87000",
       },
-      {
-        id: 2,
-      },
     ],
   },
 ]

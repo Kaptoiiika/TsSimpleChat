@@ -1,6 +1,6 @@
 .Main{
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 240px 1fr;
 }
 .Chanels {
   border-radius: 25px 0 0 0;
@@ -8,11 +8,12 @@
 
   display: grid;
   grid-template-areas: "Chanels-header" " chanels-list" " chanels-fotter ";
-  grid-template-rows: 50px 1fr 70px;
+  grid-template-rows: 50px 1fr 65px;
 }
 .Chanels-header {
   grid-area: Chanels-header;
   background-color: #2f3136;
+  border-radius: 15px 0 0 0 ;
 }
 .chanels-list {
   grid-area: chanels-list;

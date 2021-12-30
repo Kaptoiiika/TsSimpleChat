@@ -1,9 +1,9 @@
-import { Schema, model, Types } from "mongoose"
+const { Schema, model, Types } = require("mongoose")
 
 const schema = new Schema({
-  name: { type: string, required: true },
-  password: { type: string, required: true },
-  subscribers: { type: Types.ObjectID, ref: "server" },
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+  subscribers: [{ type: Types.ObjectId, ref: "server" }]
 })
 
-export default model("User", schema)
+module.exports = model("User", schema)
