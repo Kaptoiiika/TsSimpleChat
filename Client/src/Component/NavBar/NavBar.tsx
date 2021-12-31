@@ -1,5 +1,5 @@
 import "./NavBar.css"
-import { Button } from "@material-ui/core"
+import { Button } from "@mui/material"
 import { GiHouse, GiBackboneShell, GiBull } from "react-icons/gi"
 import { BiPlus, BiCaretDown, BiCaretUp } from "react-icons/bi"
 

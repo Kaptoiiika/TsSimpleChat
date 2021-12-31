@@ -1,3 +1,5 @@
+// import { Button } from "@material-ui/core"
+import { TextField, Button } from "@mui/material"
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { useHttp } from "../hooks/http.hook"
@@ -26,27 +28,32 @@ function AuthPage() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <div>Auth</div>
-        <input
-          id="name"
-          placeholder="name"
-          type="text"
-          onChange={changeHandler}
-        ></input>
-        <input
-          id="password"
-          placeholder="password"
-          type="password"
-          onChange={changeHandler}
-        ></input>
-        <div>
-          <button className="send-btn" onClick={loginHandler}>
+        <div className="auth-card-label">Ты лох ?</div>
+        <div className="send-form">
+          <TextField
+            type="name"
+            onChange={changeHandler}
+            id="name"
+            label="name"
+            variant="filled"
+          />
+          <TextField
+            type="password"
+            className="password"
+            onChange={changeHandler}
+            helperText={error || " "}
+            id="password"
+            label="password"
+            variant="filled"
+          />
+        </div>
+        <div className="send-btn">
+          <Button onClick={loginHandler} variant="contained" color="success">
             Войти
-          </button>
-
-          <button className="send-btn" onClick={registerHandler}>
+          </Button>
+          <Button onClick={registerHandler} variant="contained">
             Зарегистрироваться
-          </button>
+          </Button>
         </div>
       </div>
     </div>

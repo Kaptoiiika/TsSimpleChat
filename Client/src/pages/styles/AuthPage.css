@@ -1,8 +1,8 @@
-.auth-page{
+.auth-page {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #6a77fc;
+  background: linear-gradient(45deg, #5757d9 0%, #21d9f7 100%);
   z-index: 101;
 }
 .auth-card {
@@ -16,10 +16,53 @@
 
   flex-direction: column;
 
-  background: #36393f;
-  height: 300px;
+  /* background: linear-gradient(
+    135deg,
+    hsl(220, 7.7%, 22.9%) 0%,
+    rgb(57, 61, 68) 100%
+  ); */
+  background: linear-gradient(
+    135deg,
+    rgb(230, 232, 236) 0%,
+    rgb(193, 196, 201) 100%
+  );
+
   width: 500px;
   border-radius: 15px;
+  color: black;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.send {
+  display: flex;
+  flex-direction: row;
+}
+.auth-card-label{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 ;
+}
+
+.send-form {
+  display: flex;
+  flex-direction: column;
+  color:wheat;
+  margin: 0 0 0 10px;
+}
+.send-form > * {
+  width: 480px;
 }
 .send-btn {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 30px  ;
+  padding: 20px 0 ;
+}
+
+@media screen and (max-width: 600px) {
+  .auth-card {
+    width: 400px;
+  }
+  .send-form > * {
+    width: 380px;
+  }
 }

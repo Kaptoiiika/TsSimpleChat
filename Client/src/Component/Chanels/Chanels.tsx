@@ -2,9 +2,9 @@ import { useContext, useState } from "react"
 import { chanel } from "../../types/Servers"
 import Mesenger from "../Mesenger/Mesenger"
 
-import Button from "@material-ui/core/ButtonBase"
-import "./Chanels.css"
+import {Button} from "@mui/material"
 import { AuthContext } from "../../context/AuthContext"
+import "./Chanels.css"
 
 type Props = {
   chanels: chanel[]
@@ -45,7 +45,7 @@ function Chanels(props: Props) {
           })}
         </div>
 
-        <div className="chanels-fotter"> someFooter</div>
+        <div className="chanels-fotter">someFooter</div>
       </div>
       <Mesenger
         messages={chanels[currentChanel].messages}
