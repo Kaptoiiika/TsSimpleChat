@@ -1,4 +1,4 @@
-.Main{
+.Main {
   display: grid;
   grid-template-columns: 240px 1fr;
 }
@@ -7,22 +7,55 @@
   background-color: hsl(223, 7%, 20%);
 
   display: grid;
-  grid-template-areas: "Chanels-header" " chanels-list" " chanels-fotter ";
-  grid-template-rows: 50px 1fr 65px;
+  grid-template-areas: "Chanels-header" " chanels-list" " chanels-fotter" ;
+  grid-template-rows: 50px 1fr 70px 5px;
 }
 .Chanels-header {
   grid-area: Chanels-header;
   background-color: #2f3136;
-  border-radius: 15px 0 0 0 ;
+  border-radius: 15px 0 0 0;
 }
 .chanels-list {
   grid-area: chanels-list;
   height: 100%;
 }
 .chanels-fotter {
+  display: flex;
   grid-area: chanels-fotter;
-  vertical-align: bottom;
   background-color: #292b2f;
+  align-items: center
+}
+.chanels-fotter:hover{
+  background-color: #26272b;
+}
+.chanels-fotter-user {
+  display: flex;
+  align-items: center;
+}
+.chanels-fotter-userData{
+  margin: 0 0 0 8px;
+}
+.chanels-fotter-userName {
+  margin: 0;
+}
+.chanels-fotter-status {
+  text-align: left;
+  margin: 0;
+
+}
+.chanels-fotter-icon {
+  border-radius: 50%;
+  z-index: 101;
+
+}
+.chanels-fotter-icon >* {
+  z-index: 100;
+  margin: 0 0 0 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  border: 3px solid rgb(59,165,93) ;
 }
 .chanels-item {
   font-size: 20px;

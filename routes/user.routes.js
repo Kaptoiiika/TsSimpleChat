@@ -23,7 +23,7 @@ const postRegister = async (req, res) => {
     console.log("create user:", user)
     res.status(201).json({ message: "create user" })
   } catch (error) {
-    res.status(500).json({ message: "error code 500", error })
+    res.status(500).json({ message: "error code 500" })
   }
 }
 
@@ -50,20 +50,16 @@ const postLogin = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    console.log("userId: ", req.body)
-    const { userId } = req.body
-
-    const data = userId.map(async (userid, index) => {
-      return await User.findOne({ userid })
-    })
-    res.json({ data })
+    const data = await User.findById(req.params.id)
+    res.json(data)
   } catch (error) {
+    console.log("getUser:", req.params)
     res.status(500).json({ message: "error code 500" })
   }
 }
 
 router.post("/register", postRegister)
 router.post("/login", postLogin)
-router.get("/users", getUser)
+router.get("/:id", getUser)
 
 module.exports = router

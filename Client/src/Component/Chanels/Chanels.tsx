@@ -1,10 +1,10 @@
 import { useContext, useState } from "react"
 import { chanel } from "../../types/Servers"
 import Mesenger from "../Mesenger/Mesenger"
+import { Button } from "@mui/material"
 
-import {Button} from "@mui/material"
-import { AuthContext } from "../../context/AuthContext"
 import "./Chanels.css"
+import { UserContext } from "../../context/UserContext"
 
 type Props = {
   chanels: chanel[]
@@ -13,9 +13,9 @@ type Props = {
 }
 
 function Chanels(props: Props) {
-
-  const [currentChanel, setCurrentChanel] = useState(0)
   const { chanels, serverName, serverId } = props
+  const { name, status } = useContext(UserContext)
+  const [currentChanel, setCurrentChanel] = useState(0)
 
   const chanelName = chanels[currentChanel].name
   const chanelId = chanels[currentChanel].id
@@ -23,6 +23,7 @@ function Chanels(props: Props) {
   function changeChanel(id: number) {
     setCurrentChanel(id)
   }
+
   return (
     <div className="Main">
       <div className="Chanels">
@@ -45,7 +46,20 @@ function Chanels(props: Props) {
           })}
         </div>
 
-        <div className="chanels-fotter">someFooter</div>
+        <div className="chanels-fotter">
+          <div className="chanels-fotter-user">
+            <div className="chanels-fotter-icon">
+              <img
+                src="https://cdn.discordapp.com/avatars/782147867380285442/4acae783a7dba751a54c6306942dd0d7.webp?size=80"
+                alt=""
+              />
+            </div>
+            <div className="chanels-fotter-userData">
+              <p className="chanels-fotter-userName">{name}</p>
+              <p className="chanels-fotter-status">{status}</p>
+            </div>
+          </div>
+        </div>
       </div>
       <Mesenger
         messages={chanels[currentChanel].messages}

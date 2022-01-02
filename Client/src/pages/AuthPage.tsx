@@ -48,10 +48,10 @@ function AuthPage() {
           />
         </div>
         <div className="send-btn">
-          <Button onClick={loginHandler} variant="contained" color="success">
+          <Button onClick={loginHandler} disabled={loading} variant="contained" color="success">
             Войти
           </Button>
-          <Button onClick={registerHandler} variant="contained">
+          <Button onClick={registerHandler} disabled={loading} variant="contained">
             Зарегистрироваться
           </Button>
         </div>

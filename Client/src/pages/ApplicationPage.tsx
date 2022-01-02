@@ -1,15 +1,24 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Chanels from "../Component/Chanels/Chanels"
 import Members from "../Component/Members/Members"
 import NavBar from "../Component/NavBar/NavBar"
+import { AuthContext } from "../context/AuthContext"
+import { UserContext } from "../context/UserContext"
 import { serverList } from "../data/Servers"
 import usersList from "../data/Users"
+import { useUser } from "../hooks/user.hook"
 import { member } from "../types/Servers"
 import CreateServer from "./CreateServer"
 import HomePage from "./Home"
 
 function ApplicationPage() {
+  const auth = useContext(AuthContext)
+  const { getData, name, userId, status, contact } = useUser()
+  useEffect(() => {
+    getData(auth.userId || " ")
+  }, [auth.userId])
   const [server, setServer] = useState(0)
+
   if (server < 0) {
     if (server === -1)
       return (
@@ -26,6 +35,7 @@ function ApplicationPage() {
         </div>
       )
   }
+
   const chanels = serverList[server].chanels
   const serverName = serverList[server].name
   const serverId = serverList[server].id
@@ -44,11 +54,17 @@ function ApplicationPage() {
   })
 
   return (
-    <div className="App">
-      <NavBar setServer={setServer} />
-      <Chanels chanels={chanels} serverId={serverId} serverName={serverName} />
-      <Members users={users} />
-    </div>
+    <UserContext.Provider value={{ getData, name, userId, status, contact }}>
+      <div className="App">
+        <NavBar setServer={setServer} />
+        <Chanels
+          chanels={chanels}
+          serverId={serverId}
+          serverName={serverName}
+        />
+        <Members users={users} />
+      </div>
+    </UserContext.Provider>
   )
 }
 

@@ -22,7 +22,7 @@ function Members(props: Props) {
       <h3 className="header Members-header">someMembers</h3>
       <ul className="Members-list">
         {users.map((user: user, index: number) => {
-          return <Member user={user} />
+          return <Member user={user} key={index}/>
         })}
       </ul>
     </div>
