@@ -6,15 +6,17 @@ export const useUser = () => {
   const [name, setName] = useState(null)
   const [userId, setUserId] = useState(null)
   const [status, setStatus] = useState(null)
+  const [subscribers, setSubscribers] = useState(['null'])
   const [contact, setContact] = useState(null)
 
   const getData = async (Id: string) => {
-    console.log("getuserData:",Id)
-      try {
+    console.log("getuserData:", Id)
+    try {
       const data = await request(`api/user/${Id}`, "get")
       setName(data.name)
       setUserId(data.UserId)
       setStatus(data.Status)
+      setSubscribers(data.subscribers)
       setContact(data.Contact)
     } catch (error) {}
   }
@@ -24,5 +26,6 @@ export const useUser = () => {
     userId,
     status,
     contact,
+    subscribers,
   }
 }

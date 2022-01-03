@@ -7,6 +7,7 @@ export function useRoutes(isAuth: any) {
     return (
       <Routes>
         <Route path="*" element={<ApplicationPage />} />
+        <Route path="/Auth" element={<AuthPage />} />
       </Routes>
     )
   }

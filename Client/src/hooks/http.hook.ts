@@ -23,7 +23,7 @@ export const useHttp = () => {
         setLoading(false)
 
         return data
-      } catch (e:any) {
+      } catch (e: any) {
         setLoading(false)
         setError(e.message)
         throw e

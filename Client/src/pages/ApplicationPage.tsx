@@ -8,12 +8,11 @@ import { serverList } from "../data/Servers"
 import usersList from "../data/Users"
 import { useUser } from "../hooks/user.hook"
 import { member } from "../types/Servers"
-import CreateServer from "./CreateServer"
 import HomePage from "./Home"
 
 function ApplicationPage() {
   const auth = useContext(AuthContext)
-  const { getData, name, userId, status, contact } = useUser()
+  const { getData, name, userId, status, contact, subscribers } = useUser()
   useEffect(() => {
     getData(auth.userId || " ")
   }, [auth.userId])
@@ -25,13 +24,6 @@ function ApplicationPage() {
         <div className="App">
           <NavBar setServer={setServer} />
           <HomePage />
-        </div>
-      )
-    if (server === -2)
-      return (
-        <div className="App">
-          <NavBar setServer={setServer} />
-          <CreateServer />
         </div>
       )
   }
@@ -54,7 +46,9 @@ function ApplicationPage() {
   })
 
   return (
-    <UserContext.Provider value={{ getData, name, userId, status, contact }}>
+    <UserContext.Provider
+      value={{ getData, name, userId, status, contact, subscribers }}
+    >
       <div className="App">
         <NavBar setServer={setServer} />
         <Chanels

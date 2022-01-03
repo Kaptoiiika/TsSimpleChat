@@ -1,4 +1,4 @@
-// import { Button } from "@material-ui/core"
+
 import { TextField, Button } from "@mui/material"
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
@@ -28,7 +28,7 @@ function AuthPage() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <div className="auth-card-label">Ты лох ?</div>
+        <div className="auth-card-label">Шутки</div>
         <div className="send-form">
           <TextField
             type="name"

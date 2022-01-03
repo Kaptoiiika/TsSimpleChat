@@ -5,6 +5,15 @@
   background-color: #36393f;
   z-index: -50;
 }
-.serversButton{
+.serversButton {
   z-index: 1;
+}
+.Servers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Server > .css-1d6wzja-MuiButton-startIcon {
+  margin: 0;
 }
