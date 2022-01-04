@@ -1,8 +1,8 @@
-import { defaultIcon } from "../../unknowComponent/defaultIcons"
+
 
 type Props = {
   user: {
-    id: number
+    _id: string
     name: string
     icon?: string
     status?: string
@@ -16,10 +16,10 @@ function Member(props: Props) {
   const { user } = props
 
   return (
-    <div className="Member" key={user.id}>
+    <div className="Member" key={user._id}>
       <img
         className="Member-userIcon"
-        src={user.icon ? user.icon : defaultIcon}
+        src={" "}
         alt=""
       />
       <div className="Member-user">

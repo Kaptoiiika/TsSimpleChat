@@ -1,4 +1,3 @@
-
 import { TextField, Button } from "@mui/material"
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
@@ -16,7 +15,7 @@ function AuthPage() {
 
   async function registerHandler() {
     try {
-      const data = await request("api/user/register", "POST", { ...form })
+      await request("api/user/register", "POST", { ...form })
     } catch (error) {}
   }
   async function loginHandler() {
@@ -48,10 +47,19 @@ function AuthPage() {
           />
         </div>
         <div className="send-btn">
-          <Button onClick={loginHandler} disabled={loading} variant="contained" color="success">
+          <Button
+            onClick={loginHandler}
+            disabled={loading}
+            variant="contained"
+            color="success"
+          >
             Войти
           </Button>
-          <Button onClick={registerHandler} disabled={loading} variant="contained">
+          <Button
+            onClick={registerHandler}
+            disabled={loading}
+            variant="contained"
+          >
             Зарегистрироваться
           </Button>
         </div>

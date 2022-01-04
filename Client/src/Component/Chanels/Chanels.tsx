@@ -1,36 +1,46 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { chanel } from "../../types/Servers"
 import Mesenger from "../Mesenger/Mesenger"
 import { Button } from "@mui/material"
 
 import "./Chanels.css"
 import { UserContext } from "../../context/UserContext"
+import { ServerContext } from "../../context/ServerContext"
+import { Loader } from "../Loader/Loader"
+import { useHttp } from "../../hooks/http.hook"
 
-type Props = {
-  chanels: chanel[]
-  serverName: string
-  serverId: number
-}
-
-function Chanels(props: Props) {
-  const { chanels, serverName, serverId } = props
+function Chanels() {
   const { name, status } = useContext(UserContext)
-  const [currentChanel, setCurrentChanel] = useState(0)
+  const { serverName, chanelsId } = useContext(ServerContext)
+  const { request, loading } = useHttp()
+  const [chanelList, setChanelsList] = useState(["0"])
 
-  const chanelName = chanels[currentChanel].name
-  const chanelId = chanels[currentChanel].id
+  const changeChanel = (_id: "string") => {}
 
-  function changeChanel(id: number) {
-    setCurrentChanel(id)
+  useEffect(() => {
+    async function getData() {
+      const data = await Promise.all(
+        chanelsId.map(async (chanelId) => {
+          if (chanelId !== null) {
+            return request(`api/server/chanel/${chanelsId}`, "GET")
+          }
+        })
+      )
+      setChanelsList(data)
+    }
+    getData()
+  }, [chanelsId])
+
+  if (loading) {
+    return <Loader />
   }
-
   return (
     <div className="Main">
       <div className="Chanels">
         <h3 className="header Chanels-header">{serverName}</h3>
 
-        <div className="chanels-list">
-          {chanels.map((chanel, index) => {
+        {/* <div className="chanels-list">
+          {chanelList.map((chanel, index) => {
             return (
               <Button
                 id={`chanelID:${chanel.id}`}
@@ -44,7 +54,7 @@ function Chanels(props: Props) {
               </Button>
             )
           })}
-        </div>
+        </div> */}
 
         <div className="chanels-fotter">
           <div className="chanels-fotter-user">
@@ -61,12 +71,12 @@ function Chanels(props: Props) {
           </div>
         </div>
       </div>
-      <Mesenger
+      {/* <Mesenger
         messages={chanels[currentChanel].messages}
         chanelName={chanelName}
         chanelId={chanelId}
         serverId={serverId}
-      />
+      /> */}
     </div>
   )
 }

@@ -10,7 +10,7 @@ type Props = {
 }
 
 function CreateServer(props: Props) {
-  const { loading, error, request } = useHttp()
+  const {  request } = useHttp()
   const auth = useContext(AuthContext)
   const { getData } = useContext(UserContext)
   const { handleTooltipClose } = props
@@ -21,7 +21,7 @@ function CreateServer(props: Props) {
   }
   async function createHandler() {
     try {
-      const data = await request("api/server/create", "POST", {
+      await request("api/server/create", "POST", {
         ...form,
         membersId: auth.userId,
       })
@@ -30,7 +30,7 @@ function CreateServer(props: Props) {
   }
   async function addHandler() {
     try {
-      const data = await request("api/server/adduser", "POST", {
+      await request("api/server/adduser", "POST", {
         ...form,
         membersId: auth.userId,
       })

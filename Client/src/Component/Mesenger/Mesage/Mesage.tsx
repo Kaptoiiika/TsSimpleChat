@@ -1,6 +1,6 @@
 import "./Message.css"
 import users from "../../../data/Users"
-import { defaultIcon } from "../../unknowComponent/defaultIcons"
+
 import { messages } from "../../../types/Servers"
 
 type Props = {
@@ -13,7 +13,7 @@ function Message(props: Props) {
     <li className="Mesage" id={`messageId:${id}`}>
       <img
         className="userIcon"
-        src={user.icon ? user.icon : defaultIcon}
+        src={user.icon || ""}
         alt=""
       />
       <div className="user">

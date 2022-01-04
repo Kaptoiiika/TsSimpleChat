@@ -8,11 +8,12 @@ import {
   GiPirateFlag,
   GiMoebiusTriangle,
 } from "react-icons/gi"
-import { BiPlus, BiCaretUp } from "react-icons/bi"
+import { BiPlus } from "react-icons/bi"
 import { useContext, useEffect, useState } from "react"
 import CreateServer from "./CreateServer"
 import { useHttp } from "../../hooks/http.hook"
 import { UserContext } from "../../context/UserContext"
+import { ServerContext } from "../../context/ServerContext"
 
 type Props = {
   setServer: any
@@ -20,8 +21,9 @@ type Props = {
 
 function Servers(props: Props) {
   const { subscribers } = useContext(UserContext)
-  const { error, loading, request } = useHttp()
-  const [servers, setServers] = useState([
+  const { setServerData } = useContext(ServerContext)
+  const { request } = useHttp()
+  const [serverList, setServerList] = useState([
     {
       chanelsId: [],
       membersId: ["61cd5b5fa6b0f3a0912c900a"],
@@ -29,7 +31,6 @@ function Servers(props: Props) {
       _id: "61d3300aee4924afe75e749e",
     },
   ])
-  const { setServer } = props
   const iconColor = "#3ba55d"
   const [open, setOpen] = useState(false)
 
@@ -42,7 +43,7 @@ function Servers(props: Props) {
           }
         })
       )
-      setServers(data)
+      setServerList(data)
     }
     getData()
   }, [subscribers])
@@ -56,17 +57,18 @@ function Servers(props: Props) {
   }
 
   function home() {
-    setServer(-1)
+    console.log("home page")
   }
 
-  const toChangeServer = (e: any) => {
-    setServer(e.target.id)
+  const toChangeServer = (_id: string) => {
+    setServerData(_id)
   }
 
   const handleTitle = (sever: any) => {
     if (sever) return sever.name
     return " "
   }
+
   const randomicons = (index: number) => {
     switch (index) {
       case 0:
@@ -127,8 +129,8 @@ function Servers(props: Props) {
             home()
           }}
         />
-        {servers
-          ? servers.map((server: any, index: number) => {
+        {serverList
+          ? serverList.map((server: any, index: number) => {
               return (
                 <div className="" key={index}>
                   <Tooltip
@@ -137,7 +139,9 @@ function Servers(props: Props) {
                     title={handleTitle(server)}
                   >
                     <Button
-                      onClick={toChangeServer}
+                      onClick={() => {
+                        toChangeServer(server._id)
+                      }}
                       startIcon={randomicons(index)}
                     />
                   </Tooltip>
