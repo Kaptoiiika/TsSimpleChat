@@ -12,9 +12,26 @@
   border-radius: 15px 0 0 0;
 }
 
-.chanels-list {
+.Chanel-list {
+  display: flex;
   grid-area: chanels-list;
-  height: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+.Chanel-list > * {
+  margin: 0 0 10px 0;
+  width: 100%;
+}
+.Chanel {
+  width: 95%;
+}
+.Chanel-button {
+  border-radius: 5px;
+  color: white !important;
+  width: 100%;
+}
+.css-15v22id-MuiAccordionDetails-root {
+  padding: 0 !important;
 }
 .Chanels-group {
   width: 100%;

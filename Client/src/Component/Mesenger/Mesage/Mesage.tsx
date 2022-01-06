@@ -1,24 +1,17 @@
 import "./Message.css"
-import users from "../../../data/Users"
-
-import { messages } from "../../../types/Servers"
 
 type Props = {
-  message: messages
+  message: string
+  ownerId: string
 }
 function Message(props: Props) {
-  const { id, userId, msg } = props.message
-  const user = users[userId]
+  const { message, ownerId } = props
   return (
-    <li className="Mesage" id={`messageId:${id}`}>
-      <img
-        className="userIcon"
-        src={user.icon || ""}
-        alt=""
-      />
+    <li className="Mesage">
+      <img className="userIcon" src={"" || ""} alt="" />
       <div className="user">
-        <p className="userName">{user.name}</p>
-        <p className="msg">{msg}</p>
+        <p className="userName">{ownerId}</p>
+        <p className="msg">{message}</p>
       </div>
     </li>
   )

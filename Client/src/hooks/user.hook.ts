@@ -13,7 +13,7 @@ export const useUser = () => {
     try {
       const data = await request(`api/user/${Id}`, "get")
       setName(data.name)
-      setUserId(data.UserId)
+      setUserId(data._Id)
       setStatus(data.Status)
       setSubscribers(data.subscribers)
       setContact(data.Contact)

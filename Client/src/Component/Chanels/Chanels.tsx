@@ -1,3 +1,4 @@
+import "./Chanels.css"
 import { useContext, useEffect, useState } from "react"
 import { styled } from "@mui/material/styles"
 import { Accordion, AccordionDetails, Button, Modal } from "@mui/material"
@@ -13,6 +14,7 @@ import { ServerContext } from "../../context/ServerContext"
 import { Loader } from "../Loader/Loader"
 import { useHttp } from "../../hooks/http.hook"
 import CreateChanel from "./CreateChanel/CreateChanel"
+import Chanel from "./Chanel"
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary expandIcon={<BsChevronRight />} {...props} />
@@ -22,7 +24,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     transform: "rotate(90deg)",
   },
   "& .MuiAccordionSummary-content": {
-    marginLeft: "0",
+    margin: "0 0 0 0",
   },
 }))
 
@@ -46,9 +48,9 @@ function Chanels() {
   useEffect(() => {
     async function getData() {
       const data = await Promise.all(
-        chanelsId.map(async (chanelId) => {
-          if (chanelId !== null) {
-            return request(`api/chanel/${chanelsId}`, "GET")
+        chanelsId.map(async (chanel) => {
+          if (chanel !== null) {
+            return await request(`api/chanel/${chanel}`, "GET")
           }
         })
       )
@@ -89,6 +91,7 @@ function Chanels() {
             background: "none",
             color: "white",
             margin: 0,
+            padding: "5px 0",
           }}
           defaultExpanded
         >
@@ -101,7 +104,9 @@ function Chanels() {
                 style={{ color: "white" }}
                 onClick={handleChange}
                 startIcon={
-                  <BsChevronRight style={{ color: "white", width: "16px" }} />
+                  <BsChevronRight
+                    style={{ color: "white", width: "14px", height: "14px" }}
+                  />
                 }
               />
             }
@@ -124,9 +129,18 @@ function Chanels() {
             </div>
           </AccordionSummary>
           <AccordionDetails style={{ margin: 0 }}>
-            {chanelList.map((obj) => {
-              if (obj) return <p key={obj._id}>{obj.name}</p>
-            })}
+            <div className="Chanel-list">
+              {chanelList.map((obj) => {
+                if (obj)
+                  return (
+                    <Chanel
+                      key={obj._id}
+                      chanelId={obj._id}
+                      chanelName={obj.name}
+                    />
+                  )
+              })}
+            </div>
           </AccordionDetails>
         </Accordion>
       </div>

@@ -1,20 +1,32 @@
+import { useContext } from "react"
+import { ChanelContext } from "../../context/ChanelContext"
+import Message from "./Mesage/Mesage"
 import "./Mesenger.css"
 
 function Mesenger() {
-  function handleKeyDown(e: any) {
+  const { sendMessage, messages, chanelName } = useContext(ChanelContext)
+
+  const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
-      console.log('serverId, chanelId')
+      sendMessage(e.target.value)
       e.target.value = ""
     }
   }
 
   return (
     <div className="Mesenger">
-      <h3 className="header Mesenger-header">someName</h3>
+      <h3 className="header Mesenger-header">{chanelName}</h3>
       <ul className="Mesenger-list">
-        {/* {messages.map((mesage: messages) => {
-          return <Message message={mesage} key={mesage.id} />
-        })} */}
+        {messages.map((obj: any, index) => {
+          if (obj)
+            return (
+              <Message
+                message={obj.message}
+                ownerId={obj.ownerId}
+                key={index}
+              />
+            )
+        })}
       </ul>
       <div className="Mesenger-fotter">
         <input

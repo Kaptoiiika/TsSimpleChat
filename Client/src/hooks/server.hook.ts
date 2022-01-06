@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useHttp } from "./http.hook"
 
 export const useServer = () => {
-  const {  request } = useHttp()
+  const { request } = useHttp()
   const [serverName, setServerName] = useState(null)
   const [serverId, setserverId] = useState(null)
   const [chanelsId, setchanelsId] = useState([null])
@@ -17,11 +17,13 @@ export const useServer = () => {
       setserverId(data._id)
     } catch (error) {}
   }
+
   return {
     setServerData,
     serverId,
     serverName,
     chanelsId,
     membersId,
+
   }
 }

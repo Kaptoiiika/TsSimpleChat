@@ -1,9 +1,9 @@
 import { createContext } from "react"
 
 export const UserContext = createContext({
+  getData: (userId: string) => {},
   name: null,
   userId: null,
-  getData: (userId: string) => {},
   status: null,
   contact: null,
   subscribers: [''],

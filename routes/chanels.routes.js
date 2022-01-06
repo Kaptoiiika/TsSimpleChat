@@ -27,6 +27,29 @@ const postCreate = async (req, res) => {
   }
 }
 
+const postMessage = async (req, res) => {
+  try {
+    const { message, ownerId, chanelId } = req.body
+    const chanel = await Chanel.findOne({ _id: chanelId })
+    const user = await User.findOne({ _id: ownerId })
+
+    if (!user || !chanel) {
+      return res.status(400).json({
+        message: `Не удалось создать сообщение ownerId:${!!ownerId}, chanelId:${!!chanelId}`,
+      })
+    }
+
+    chanel.messages.push({ message, ownerId: user._id })
+
+    await chanel.save()
+
+    res.status(201).json({ message: "messages send" })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: `messages code 500 ` })
+  }
+}
+
 const getByID = async (req, res) => {
   try {
     const data = await Chanel.findById(req.params.id)
@@ -39,6 +62,7 @@ const getByID = async (req, res) => {
 }
 
 router.post("/create", postCreate)
+router.post("/message/create", postMessage)
 router.get("/:id", getByID)
 
 module.exports = router

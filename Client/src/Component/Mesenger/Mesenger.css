@@ -11,10 +11,12 @@
 .Mesenger-list {
   grid-area: Mesenger-list;
   padding-left: 10px;
+  margin: 3px 0;
+  overflow: auto;
 }
 .Mesenger-fotter {
   display: flex;
-  margin: 15px 15px;
+  margin: 0 15px 15px;
   border-radius: 10px;
   grid-area: Mesenger-fotter;
   vertical-align: bottom;
