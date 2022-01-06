@@ -1,31 +1,20 @@
 import "./Mesenger.css"
-import Message from "./Mesage/Mesage"
-import { messages } from "../../types/Servers"
 
-type Props = {
-  messages: messages[]
-  chanelName: string
-  serverId: number
-  chanelId: number
-}
-
-function Mesenger(props: Props) {
-  const { messages, chanelName,serverId,chanelId } = props
-
+function Mesenger() {
   function handleKeyDown(e: any) {
     if (e.key === "Enter") {
-      console.log(serverId,chanelId)
-      e.target.value = "";
+      console.log('serverId, chanelId')
+      e.target.value = ""
     }
   }
 
   return (
     <div className="Mesenger">
-      <h3 className="header Mesenger-header">{chanelName}</h3>
+      <h3 className="header Mesenger-header">someName</h3>
       <ul className="Mesenger-list">
-        {messages.map((mesage: messages) => {
+        {/* {messages.map((mesage: messages) => {
           return <Message message={mesage} key={mesage.id} />
-        })}
+        })} */}
       </ul>
       <div className="Mesenger-fotter">
         <input

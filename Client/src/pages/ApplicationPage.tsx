@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import Chanels from "../Component/Chanels/Chanels"
 import Members from "../Component/Members/Members"
+import Mesenger from "../Component/Mesenger/Mesenger"
 import NavBar from "../Component/NavBar/NavBar"
 import { AuthContext } from "../context/AuthContext"
 import { ServerContext } from "../context/ServerContext"
@@ -46,6 +47,7 @@ function ApplicationPage() {
         <div className="App">
           <NavBar setServer={setServer} />
           <Chanels />
+          <Mesenger />
           <Members />
         </div>
       </ServerContext.Provider>

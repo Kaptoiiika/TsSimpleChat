@@ -7,6 +7,9 @@ import {
   GiRollingEnergy,
   GiPirateFlag,
   GiMoebiusTriangle,
+  GiMouthWatering,
+  GiAngelOutfit,
+  GiExitDoor,
 } from "react-icons/gi"
 import { BiPlus } from "react-icons/bi"
 import { useContext, useEffect, useState } from "react"
@@ -14,12 +17,14 @@ import CreateServer from "./CreateServer"
 import { useHttp } from "../../hooks/http.hook"
 import { UserContext } from "../../context/UserContext"
 import { ServerContext } from "../../context/ServerContext"
+import { useAuth } from "../../hooks/auth.hook"
 
 type Props = {
   setServer: any
 }
 
 function Servers(props: Props) {
+  const { logout } = useAuth()
   const { subscribers } = useContext(UserContext)
   const { setServerData } = useContext(ServerContext)
   const { request } = useHttp()
@@ -60,7 +65,8 @@ function Servers(props: Props) {
     console.log("home page")
   }
 
-  const toChangeServer = (_id: string) => {
+  const toChangeServer = (evt: any, _id: string) => {
+    evt.target.classList.toggle("serverActive")
     setServerData(_id)
   }
 
@@ -73,7 +79,7 @@ function Servers(props: Props) {
     switch (index) {
       case 0:
         return (
-          <GiRollingEnergy
+          <GiMoebiusTriangle
             color={iconColor}
             className="serverIcon"
             size="50px"
@@ -82,7 +88,7 @@ function Servers(props: Props) {
 
       case 1:
         return (
-          <GiBackboneShell
+          <GiMouthWatering
             color={iconColor}
             className="serverIcon"
             size="50px"
@@ -99,11 +105,7 @@ function Servers(props: Props) {
 
       case 4:
         return (
-          <GiMoebiusTriangle
-            color={iconColor}
-            className="serverIcon"
-            size="50px"
-          />
+          <GiAngelOutfit color={iconColor} className="serverIcon" size="50px" />
         )
 
       default:
@@ -120,58 +122,66 @@ function Servers(props: Props) {
   return (
     <>
       <div className="Servers">
-        <Button
-          className="Server"
-          startIcon={
-            <GiHouse color={iconColor} className="serverIcon" size="50px" />
-          }
-          onClick={() => {
-            home()
-          }}
-        />
-        {serverList
-          ? serverList.map((server: any, index: number) => {
-              return (
-                <div className="" key={index}>
+        <div>
+          <button
+            className="Server "
+            onClick={() => {
+              home()
+            }}
+          >
+            <GiHouse color={iconColor} className="serverIcon " size="50px" />
+          </button>
+
+          {serverList
+            ? serverList.map((server: any, index: number) => {
+                return (
                   <Tooltip
+                    key={index}
                     className="Server"
                     placement="right"
                     title={handleTitle(server)}
                   >
-                    <Button
-                      onClick={() => {
-                        toChangeServer(server._id)
+                    <button
+                      onClick={(e) => {
+                        toChangeServer(e, server._id)
                       }}
-                      startIcon={randomicons(index)}
-                    />
+                    >
+                      {randomicons(index)}
+                    </button>
                   </Tooltip>
-                </div>
-              )
-            })
-          : " "}
+                )
+              })
+            : " "}
 
-        <div className="addServer">
-          <Tooltip
-            className="Server"
-            placement="right-start"
-            PopperProps={{
-              disablePortal: true,
-            }}
-            onClose={handleTooltipClose}
-            open={open}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            title={<CreateServer handleTooltipClose={handleTooltipClose} />}
-          >
-            <Button
-              onClick={handleTooltipOpen}
-              startIcon={
+          <div className="addServer">
+            <Tooltip
+              className="Server"
+              placement="right-start"
+              PopperProps={{
+                disablePortal: true,
+              }}
+              onClose={handleTooltipClose}
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title={<CreateServer handleTooltipClose={handleTooltipClose} />}
+            >
+              <button onClick={handleTooltipOpen}>
                 <BiPlus color={iconColor} className="serverIcon" size="50px" />
-              }
-            />
-          </Tooltip>
+              </button>
+            </Tooltip>
+          </div>
         </div>
+        <button
+          className="Server logout"
+          id="logout"
+          onClick={() => {
+            logout()
+          }}
+        >
+          <GiExitDoor color={iconColor} size="50px" />
+        </button>
       </div>
     </>
   )

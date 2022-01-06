@@ -4,9 +4,10 @@ const mongoose = require("mongoose")
 
 const app = express()
 
-app.use(express.json({extended:true}))
+app.use(express.json({ extended: true }))
 app.use("/api/user", require("./routes/user.routes.js"))
 app.use("/api/server", require("./routes/server.routes.js"))
+app.use("/api/chanel", require("./routes/chanels.routes.js"))
 
 const PORT = config.get("port")
 
@@ -24,7 +25,5 @@ async function start() {
     process.exit(1)
   }
 }
-
-
 
 start()

@@ -42,14 +42,15 @@ function CreateServer(props: Props) {
       <TextField
         type="name"
         onChange={changeHandler}
+        autoComplete="false"
         id="name"
         label="name"
         variant="filled"
       />
       <TextField
         type="password"
-        className="password"
         onChange={changeHandler}
+        autoComplete="false"
         id="password"
         label="password"
         variant="filled"

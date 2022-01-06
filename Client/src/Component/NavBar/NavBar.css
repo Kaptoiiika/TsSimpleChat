@@ -1,19 +1,36 @@
+.Servers {
+  background-color: #36393f00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Server {
+  margin: 5px 0 0 0;
+  background: none;
+  border: 0;
+}
 .serverIcon {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   background-color: #36393f;
   z-index: -50;
+  transition: all 0.3s ease;
 }
+
+.Server:hover {
+  cursor: pointer;
+}
+.Server:hover > .serverIcon {
+  background-color: #606beaa4;
+  border-radius: 25%;
+}
+
 .serversButton {
   z-index: 1;
 }
-.Servers {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.Server > .css-1d6wzja-MuiButton-startIcon {
-  margin: 0;
+#logout {
+  margin: 10px 0;
 }

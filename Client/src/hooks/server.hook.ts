@@ -14,7 +14,7 @@ export const useServer = () => {
       setServerName(data.name)
       setchanelsId(data.chanelsId)
       setmembersId(data.membersId)
-      setserverId(data.serverId)
+      setserverId(data._id)
     } catch (error) {}
   }
   return {

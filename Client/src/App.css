@@ -21,7 +21,7 @@
 }
 .App {
   display: grid;
-  grid-template-columns: 70px 1fr 250px;
+  grid-template-columns: 70px 240px 1fr 250px;
   flex-direction: row;
   grid-template-rows: 100%;
 }
@@ -34,4 +34,13 @@
   /* border-bottom: 1px solid black; */
   background-color: #36393f;
   box-shadow: 0 1px 1px 0px black;
+}
+
+.css-1d6wzja-MuiButton-startIcon{
+  
+  margin: 0 !important ;
+}
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+  min-width: 0 !important;
+  padding: 0 !important;
 }

@@ -7,8 +7,8 @@ export const useAuth = () => {
   const [ready, setReady] = useState(false)
   const [userId, setUserId] = useState(null)
 
-  const login = useCallback((jwtToken, id ) => {
-    if(!jwtToken && !id) return
+  const login = useCallback((jwtToken, id) => {
+    if (!jwtToken && !id) return
     setToken(jwtToken)
     setUserId(id)
 
@@ -25,6 +25,7 @@ export const useAuth = () => {
     setToken(null)
     setUserId(null)
     localStorage.removeItem(storageName)
+    window.location.reload()
   }, [])
 
   useEffect(() => {
