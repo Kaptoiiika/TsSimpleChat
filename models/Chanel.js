@@ -2,8 +2,7 @@ const { Schema, model, Types } = require("mongoose")
 
 const schema = new Schema({
   name: { type: String, required: true },
-  ownerId: { type: String, required: true },
-  messages: [{ type: Object }],
+  messages: [{ type: Types.ObjectId, ref: "Chanel" }],
 })
 
 schema.set("toJSON", {

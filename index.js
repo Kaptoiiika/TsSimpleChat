@@ -1,10 +1,14 @@
 const express = require("express")
 const config = require("config")
 const mongoose = require("mongoose")
+const fileUpload = require("express-fileupload")
 
 const app = express()
 
-app.use(express.json({ extended: true }))
+app.use(fileUpload({}))
+app.use(express.urlencoded())
+app.use(express.json())
+
 app.use("/api/user", require("./routes/user.routes.js"))
 app.use("/api/server", require("./routes/server.routes.js"))
 app.use("/api/chanel", require("./routes/chanels.routes.js"))

@@ -16,7 +16,7 @@
   border-radius: 50%;
   background-color: #36393f;
   z-index: -50;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .Server:hover {
