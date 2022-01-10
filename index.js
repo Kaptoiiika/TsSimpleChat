@@ -11,7 +11,7 @@ app.use(express.json())
 
 app.use("/api/user", require("./routes/user.routes.js"))
 app.use("/api/server", require("./routes/server.routes.js"))
-app.use("/api/chanel", require("./routes/chanels.routes.js"))
+app.use("/api/chanel", require("./routes/chanel.routes.js"))
 
 const PORT = config.get("port")
 

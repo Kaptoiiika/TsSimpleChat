@@ -1,6 +1,8 @@
 const { Router } = require("express")
+const authMiddleware = require("../middleware/auth.middleware.js")
 const router = Router()
 const Chanel = require("../models/Chanel.js")
+const Message = require("../models/Message.js")
 const Server = require("../models/Server.js")
 const User = require("../models/User.js")
 
@@ -27,19 +29,21 @@ const postCreate = async (req, res) => {
   }
 }
 
-const postMessage = async (req, res) => {
+const message = async (req, res) => {
   try {
-    const { message, ownerId, chanelId } = req.body
-    const chanel = await Chanel.findOne({ _id: chanelId })
-    const user = await User.findOne({ _id: ownerId })
+    const { text, chanelId } = req.body
+    const user = await User.findById(req.user.id)
+    const chanel = await Chanel.findById(chanelId)
 
     if (!user || !chanel) {
       return res.status(400).json({
         message: `Не удалось создать сообщение ownerId:${!!ownerId}, chanelId:${!!chanelId}`,
       })
     }
+    const message = new Message({ author: user.id, text: text })
+    await message.save()
 
-    chanel.messages.push({ message, ownerId: user._id })
+    chanel.messages.unshift(message.id)
 
     await chanel.save()
 
@@ -52,17 +56,21 @@ const postMessage = async (req, res) => {
 
 const getByID = async (req, res) => {
   try {
-    const data = await Chanel.findById(req.params.id)
-    res.json(data)
+    const chanel = await Chanel.findById(req.params.id)
+    res.json(
+      await chanel.populate({
+        path: "messages",
+        options: { limit: 3,  },
+      })
+    )
   } catch (error) {
-    if (req.params.id === "null")
-      res.status(500).json({ message: `id = ${req.params.id}` })
-    else res.status(500).json({ message: "error code 500" })
+    console.log(error)
+    res.status(500).json({ message: `messages code 500 ` })
   }
 }
 
-router.post("/create", postCreate)
-router.post("/message/create", postMessage)
+router.post("/create", authMiddleware, postCreate)
+router.post("/message", authMiddleware, message)
 router.get("/:id", getByID)
 
 module.exports = router

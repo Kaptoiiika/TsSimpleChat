@@ -3,7 +3,7 @@ const { options } = require("../routes/user.routes")
 
 const schema = new Schema({
   name: { type: String, required: true, unique: true },
-  membersId: [{ type: Types.ObjectId, ref: "User" }],
+  members: [{ type: Types.ObjectId, ref: "User" }],
   chanels: [{ type: Types.ObjectId, ref: "Chanel" }],
 })
 

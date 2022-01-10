@@ -106,7 +106,7 @@ const auth = async (req, res) => {
     const token = jwt.sign({ id: user.id }, config.get("jwtKey"), {
       expiresIn: "30d",
     })
-    res.json({ token, user: await user.populate("subscribers") })
+    res.json({ token, user: await user.populate({ path: 'subscribers', select: 'name' }) })
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })
