@@ -1,8 +1,8 @@
 import { createContext } from "react"
 
 export const AuthContext = createContext({
-  token: null,
-  userId: null,
+  token: '',
+  userId: '',
   login: (jwtToken: any, id: any) => {},
   logout: () => {},
   isAuth: false,

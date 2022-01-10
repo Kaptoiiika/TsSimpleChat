@@ -7,28 +7,25 @@ import {
   CardActions,
 } from "@mui/material"
 import { useContext, useState } from "react"
-import { AuthContext } from "../../../context/AuthContext"
-import { useHttp } from "../../../hooks/http.hook"
-import { ServerContext } from "../../../context/ServerContext"
+
 
 function CreateChanel() {
-  const { error, request } = useHttp()
-  const auth = useContext(AuthContext)
-  const { serverId, setServerData } = useContext(ServerContext)
+
   const [form, setForm] = useState({ name: "" })
 
   function changeHandler(e: any) {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
+
   async function createHandler() {
-    try {
-      await request("api/chanel/create", "POST", {
-        ...form,
-        ownerId: auth.userId,
-        serverId: serverId,
-      })
-      setServerData(serverId || "aza")
-    } catch (error) {}
+    // try {
+    //   await request("api/chanel/create", "POST", {
+    //     ...form,
+    //     ownerId: auth.userId,
+    //     serverId: serverId,
+    //   })
+    //   setServerData(serverId || "aza")
+    // } catch (error) {}
   }
 
   return (
@@ -41,7 +38,6 @@ function CreateChanel() {
           id="name"
           label="name"
           variant="filled"
-          helperText={error || " "}
         />
         <CardActions>
           <Button onClick={createHandler} variant="contained">

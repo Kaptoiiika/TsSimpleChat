@@ -14,9 +14,7 @@ import {
 import { BiPlus } from "react-icons/bi"
 import { useContext, useEffect, useState } from "react"
 import CreateServer from "./CreateServer"
-import { useHttp } from "../../hooks/http.hook"
-import { UserContext } from "../../context/UserContext"
-import { ServerContext } from "../../context/ServerContext"
+
 import { useAuth } from "../../hooks/auth.hook"
 
 type Props = {
@@ -25,9 +23,7 @@ type Props = {
 
 function Servers(props: Props) {
   const { logout } = useAuth()
-  const { subscribers } = useContext(UserContext)
-  const { setServerData } = useContext(ServerContext)
-  const { request } = useHttp()
+
   const [serverList, setServerList] = useState([
     {
       chanelsId: [],
@@ -39,19 +35,19 @@ function Servers(props: Props) {
   const iconColor = "#3ba55d"
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    async function getData() {
-      const data = await Promise.all(
-        subscribers.map(async (serverId) => {
-          if (serverId !== `null`) {
-            return request(`api/server/${serverId}`, "GET")
-          }
-        })
-      )
-      setServerList(data)
-    }
-    getData()
-  }, [subscribers])
+  // useEffect(() => {
+  //   async function getData() {
+  //     const data = await Promise.all(
+  //       subscribers.map(async (serverId) => {
+  //         if (serverId !== `null`) {
+  //           return request(`api/server/${serverId}`, "GET")
+  //         }
+  //       })
+  //     )
+  //     setServerList(data)
+  //   }
+  //   getData()
+  // }, [subscribers])
 
   const handleTooltipClose = () => {
     setOpen(false)
@@ -67,7 +63,7 @@ function Servers(props: Props) {
 
   const toChangeServer = (evt: any, _id: string) => {
     evt.target.classList.toggle("serverActive")
-    setServerData(_id)
+    // setServerData(_id)
   }
 
   const handleTitle = (sever: any) => {

@@ -1,26 +1,28 @@
 import { useRoutes } from "./routes"
 import { BrowserRouter } from "react-router-dom"
-import { useAuth } from "./hooks/auth.hook"
 import "./App.css"
-import { AuthContext } from "./context/AuthContext"
-import { Loader } from "./Component/Loader/Loader"
+import { observer } from "mobx-react-lite"
+import { useEffect } from "react"
+import AuthData from "./store/AuthData"
 
-function App() {
-  const { login, logout, token, userId, ready } = useAuth()
-  const isAuth = !!token
-  const routes = useRoutes(isAuth)
+const App = observer(() => {
+  const routes = useRoutes(AuthData.isAuth)
 
-  if (!ready) {
-    return <Loader />
+  useEffect(() => {
+    AuthData.loginToken()
+  }, [])
+
+  if (AuthData.loading) {
+    return <span>Loading</span>
   }
   return (
-    <AuthContext.Provider value={{ token, userId, login, logout, isAuth }}>
+    <>
       <header className="App-header"></header>
       <BrowserRouter>
         <div className="container">{routes}</div>
       </BrowserRouter>
-    </AuthContext.Provider>
+    </>
   )
-}
+})
 
 export default App

@@ -1,12 +1,12 @@
 import { TextField, Button } from "@mui/material"
-import { useContext, useState } from "react"
+import axios from "axios"
+import { useContext, useState, useEffect } from "react"
 import { AuthContext } from "../context/AuthContext"
-import { useHttp } from "../hooks/http.hook"
 import "./styles/AuthPage.css"
+import AuthData from "../store/AuthData"
+import { observer } from "mobx-react-lite"
 
-function AuthPage() {
-  const auth = useContext(AuthContext)
-  const { loading, error, request } = useHttp()
+const AuthPage = observer(() => {
   const [form, setForm] = useState({ name: "", password: "" })
 
   function changeHandler(e: any) {
@@ -15,15 +15,14 @@ function AuthPage() {
 
   async function registerHandler() {
     try {
-      await request("api/user/register", "POST", { ...form })
+      await axios.post("api/user/register", { ...form })
     } catch (error) {}
   }
-  async function loginHandler() {
-    try {
-      const data = await request("api/user/login", "POST", { ...form })
-      auth.login(data.token, data.userId)
-    } catch (error) {}
+
+  function loginHandler() {
+    AuthData.login(form.name, form.password)
   }
+  
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -40,7 +39,7 @@ function AuthPage() {
             type="password"
             className="password"
             onChange={changeHandler}
-            helperText={error || " "}
+            // helperText={error || " "}
             id="password"
             label="password"
             variant="filled"
@@ -49,7 +48,7 @@ function AuthPage() {
         <div className="send-btn">
           <Button
             onClick={loginHandler}
-            disabled={loading}
+            disabled={AuthData.loading}
             variant="contained"
             color="success"
           >
@@ -57,7 +56,7 @@ function AuthPage() {
           </Button>
           <Button
             onClick={registerHandler}
-            disabled={loading}
+            disabled={AuthData.loading}
             variant="contained"
           >
             Зарегистрироваться
@@ -66,6 +65,6 @@ function AuthPage() {
       </div>
     </div>
   )
-}
+})
 
 export default AuthPage

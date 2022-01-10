@@ -1,30 +1,40 @@
+import axios from "axios"
 import { useState } from "react"
-import { useHttp } from "./http.hook"
 
 export const useUser = () => {
-  const { request } = useHttp()
-  const [name, setName] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [status, setStatus] = useState(null)
-  const [subscribers, setSubscribers] = useState(["null"])
-  const [contact, setContact] = useState(null)
+  const [userId, setUserId] = useState("")
+
+  const [users, setUsers] = useState({
+    [userId]: {
+      name: "",
+      _id: "",
+      icon: "",
+      subscribers: "",
+    },
+  })
 
   const getData = async (Id: string) => {
+    if (users[Id]) {
+      return users[Id]
+    }
     try {
-      const data = await request(`api/user/${Id}`, "get")
-      setName(data.name)
-      setUserId(data._Id)
-      setStatus(data.Status)
-      setSubscribers(data.subscribers)
-      setContact(data.Contact)
-    } catch (error) {}
+      const { data } = await axios.get(`api/user/${Id}`)
+      users[data._id] = {
+        name: data.name,
+        _id: data._id,
+        icon: data.icon,
+        subscribers: data.subscribers,
+      }
+      setUsers(users)
+      return users[data._id]
+    } catch (error) {
+      console.error(error)
+      return { name: "", _id: "", icon: "", subscribers: "" }
+    }
   }
+
   return {
     getData,
-    name,
-    userId,
-    status,
-    contact,
-    subscribers,
+    users,
   }
 }

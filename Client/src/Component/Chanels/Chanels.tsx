@@ -28,7 +28,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 }))
 
 function Chanels() {
-  const { name, status } = useContext(UserContext)
+  // const { name, status } = useContext(UserContext)
   const { serverName, chanelsId, serverId } = useContext(ServerContext)
   const { request, loading } = useHttp()
   const [chanelList, setChanelsList] = useState([
@@ -71,8 +71,8 @@ function Chanels() {
               />
             </div>
             <div className="chanels-fotter-userData">
-              <p className="chanels-fotter-userName">{name}</p>
-              <p className="chanels-fotter-status">{status}</p>
+              <p className="chanels-fotter-userName">{'name'}</p>
+              <p className="chanels-fotter-status">{'status'}</p>
             </div>
           </div>
         </div>
@@ -153,8 +153,8 @@ function Chanels() {
             />
           </div>
           <div className="chanels-fotter-userData">
-            <p className="chanels-fotter-userName">{name}</p>
-            <p className="chanels-fotter-status">{status}</p>
+            <p className="chanels-fotter-userName">{'name'}</p>
+            <p className="chanels-fotter-status">{'status'}</p>
           </div>
         </div>
       </div>
