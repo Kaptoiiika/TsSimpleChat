@@ -1,10 +1,11 @@
 import axios from "axios"
 import { makeAutoObservable } from "mobx"
-import { JsxEmit } from "typescript"
+
 
 const storageName = "userData"
 class AuthData {
-  loading = true
+  firstLoad = true
+  loading = false
   isAuth = false
   token = ""
   user = {
@@ -17,8 +18,24 @@ class AuthData {
   constructor() {
     makeAutoObservable(this)
   }
-
+  async update() {
+    axios
+      .get("/api/user/update", {
+        headers: { Authorization: `Bearer ${this.token}` },
+      })
+      .then(({ data }) => {
+        this.user = data.user
+      })
+      .catch((error) => {
+        this.token = ""
+        localStorage.removeItem(storageName)
+      })
+      .finally(() => {
+        this.firstLoad = false
+      })
+  }
   async login(login: string, password: string) {
+    this.loading = true
     try {
       const { data } = await axios.post("/api/user/login", {
         name: login,
@@ -34,12 +51,15 @@ class AuthData {
       )
       this.isAuth = true
       return ""
-    } catch (err: any) {
-      return err.response.data.message
+    } catch (error: any) {
+      return error.response.data.message
+    } finally {
+      this.loading = false
     }
   }
 
   async registertration(login: string, password: string) {
+    this.loading = true
     try {
       const { data } = await axios.post("api/user/register", {
         name: login,
@@ -55,13 +75,14 @@ class AuthData {
       )
       this.isAuth = true
       return ""
-    } catch (err: any) {
-      return err.response.data.message
+    } catch (error: any) {
+      return error.response.data.message
+    } finally {
+      this.loading = false
     }
   }
 
   loginToken() {
-    this.loading = true
     const { token } = JSON.parse(
       localStorage.getItem(storageName) || `{"token":""}`
     )
@@ -85,7 +106,7 @@ class AuthData {
         localStorage.removeItem(storageName)
       })
       .finally(() => {
-        this.loading = false
+        this.firstLoad = false
       })
   }
 

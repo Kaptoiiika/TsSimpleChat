@@ -1,0 +1,22 @@
+.Message {
+  display: flex;
+  background-color: rgb(54, 57, 63);
+
+  border-radius: 5px;
+  color: #dcddde;
+  width: 400px;
+  overflow-wrap: break-word;
+}
+.Message:hover{
+  background-color: rgb(50,53,59);
+}
+.Message-avatar {
+  margin: 2px 14px 0;
+  left: 0;
+}
+.Message-content-user {
+  font-weight: 600;
+}
+.Message-content-text {
+  overflow-wrap: anywhere;
+}

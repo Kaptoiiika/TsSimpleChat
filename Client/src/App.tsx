@@ -12,9 +12,10 @@ const App = observer(() => {
     AuthData.loginToken()
   }, [])
 
-  if (AuthData.loading) {
+  if (AuthData.firstLoad) {
     return <span>Loading</span>
   }
+
   return (
     <>
       <header className="App-header"></header>

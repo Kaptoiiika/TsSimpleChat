@@ -9,6 +9,12 @@ const User = require("../models/User.js")
 const Create = async (req, res) => {
   try {
     const { name } = req.body
+    if (await Server.find({ name: name })) {
+      return res.status(400).json({
+        message: `Сервер:${name} уже создан`,
+      })
+    }
+
     const user = await User.findById(req.user.id)
     const message = new Message({
       author: user.id,
@@ -33,7 +39,7 @@ const Create = async (req, res) => {
     await chanel.save()
     await server.save()
 
-    res.status(201).json({ message: "CreateServer", id: server.id })
+    res.status(201).json({ server })
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })

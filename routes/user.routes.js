@@ -119,6 +119,18 @@ const auth = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+    res.json({
+      user: await user.populate({ path: "subscribers", select: "name" }),
+    })
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).json({ message: "error code 500", error: error.message })
+  }
+}
+
 const getAvatar = async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
@@ -159,6 +171,8 @@ router.post("/upload/avatar", authMiddleware, avatar)
 
 router.get("/subscribe/:name", authMiddleware, subscribe)
 router.get("/auth", authMiddleware, auth)
+router.get("/update", authMiddleware, update)
+
 router.get("/avatar/:id", getAvatar)
 router.get("/:id/", getUser)
 router.get("/", getUser)

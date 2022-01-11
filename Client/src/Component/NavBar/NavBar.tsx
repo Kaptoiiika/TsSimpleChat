@@ -1,8 +1,7 @@
 import "./NavBar.css"
-import { Button, Tooltip } from "@mui/material"
+import { Dialog, Tooltip } from "@mui/material"
 import {
   GiHouse,
-  GiBackboneShell,
   GiBull,
   GiRollingEnergy,
   GiPirateFlag,
@@ -12,7 +11,7 @@ import {
   GiExitDoor,
 } from "react-icons/gi"
 import { BiPlus } from "react-icons/bi"
-import { useContext, useEffect, useState } from "react"
+import { useState } from "react"
 import CreateServer from "./CreateServer"
 import AuthData from "../../store/AuthData"
 import { observer } from "mobx-react-lite"
@@ -23,16 +22,16 @@ type Props = {
 }
 
 const Servers = observer((props: Props) => {
-  const [serverList, setServerList] = useState(AuthData.user.subscribers)
+  const serverList = AuthData.user.subscribers
   const [open, setOpen] = useState(false)
 
   const iconColor = "#3ba55d"
 
-  const handleTooltipClose = () => {
+  const handleClose = () => {
     setOpen(false)
   }
 
-  const handleTooltipOpen = () => {
+  const handlepOpen = () => {
     setOpen(true)
   }
 
@@ -124,25 +123,10 @@ const Servers = observer((props: Props) => {
               </Tooltip>
             )
           })}
-
           <div className="addServer">
-            <Tooltip
-              className="Server"
-              placement="right-start"
-              PopperProps={{
-                disablePortal: true,
-              }}
-              onClose={handleTooltipClose}
-              open={open}
-              disableFocusListener
-              disableHoverListener
-              disableTouchListener
-              title={<CreateServer handleTooltipClose={handleTooltipClose} />}
-            >
-              <button onClick={handleTooltipOpen}>
-                <BiPlus color={iconColor} className="serverIcon" size="50px" />
-              </button>
-            </Tooltip>
+            <button className="Server" onClick={handlepOpen}>
+              <BiPlus color={iconColor} className="serverIcon" size="50px" />
+            </button>
           </div>
         </div>
         <button
@@ -154,6 +138,9 @@ const Servers = observer((props: Props) => {
         >
           <GiExitDoor color={iconColor} size="50px" />
         </button>
+        <Dialog className="Server" open={open}>
+          <CreateServer handleTooltipClose={handleClose} />
+        </Dialog>
       </div>
     </>
   )

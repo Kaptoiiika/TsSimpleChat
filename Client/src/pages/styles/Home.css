@@ -1,0 +1,12 @@
+.preview-avatar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.Title{
+  color: white;
+  background-color: rgb(54,57,63);
+}
+.Dialog-content{
+  background-color: rgb(54,57,63);
+}

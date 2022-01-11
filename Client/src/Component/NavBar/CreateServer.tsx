@@ -1,43 +1,64 @@
-import { TextField, Button } from "@mui/material"
+import {
+  TextField,
+  Button,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+} from "@mui/material"
 
-import { useContext, useState } from "react"
+import { useState } from "react"
+import ServerData from "../../store/ServerData"
 
 type Props = {
   handleTooltipClose: any
 }
 
-function CreateServer(props: Props) {
+const CreateServer = (props: Props) => {
   const { handleTooltipClose } = props
-  const [form, setForm] = useState({ name: "", password: "" })
+  const [error, setError] = useState("")
+  const [form, setForm] = useState({ name: "" })
 
   function changeHandler(e: any) {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
+  const handleSubscribe = async () => {
+    setError("")
+  }
+
+  const handleCreate = async () => {
+    const err = await ServerData.create(form.name)
+    setError(err)
+    if(!err) handleTooltipClose()
+  }
 
   return (
-    <div className="create-page">
-      <TextField
-        type="name"
-        onChange={changeHandler}
-        autoComplete="false"
-        id="name"
-        label="name"
-        variant="filled"
-      />
-      <TextField
-        type="password"
-        onChange={changeHandler}
-        autoComplete="false"
-        id="password"
-        label="password"
-        variant="filled"
-      />
-      <Button variant="contained">войти</Button>
-      <Button variant="contained">создать</Button>
-      <Button onClick={handleTooltipClose} variant="contained">
-        назад
-      </Button>
-    </div>
+    <>
+      <DialogTitle className="Title">Создание сервера</DialogTitle>
+      <DialogContent className="Dialog-content">
+        <TextField
+          type="name"
+          onChange={changeHandler}
+          id="name"
+          error={!!error}
+          helperText={error}
+          margin="dense"
+          label="name"
+          fullWidth
+          variant="standard"
+        />
+      </DialogContent>
+      <DialogActions style={{ backgroundColor: "rgb(47,49,54)" }}>
+        <Button variant="contained" onClick={handleSubscribe}>
+          войти
+        </Button>
+        <Button variant="contained" onClick={handleCreate}>
+          создать
+        </Button>
+        <Button onClick={handleTooltipClose} variant="contained">
+          назад
+        </Button>
+      </DialogActions>
+    </>
   )
 }
 

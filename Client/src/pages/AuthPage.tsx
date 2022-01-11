@@ -30,11 +30,14 @@ const AuthPage = observer(() => {
             type="name"
             onChange={changeHandler}
             id="name"
+            error={!!error}
             margin="dense"
             label="name"
+            fullWidth
             variant="standard"
           />
           <TextField
+            fullWidth
             type="password"
             className="password"
             onChange={changeHandler}

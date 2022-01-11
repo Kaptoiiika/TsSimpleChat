@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
+:root {
+  --background-floating: #18191c;
+}
 .App-header {
   position: fixed;
   background-color: #202225;
@@ -36,11 +38,28 @@
   box-shadow: 0 1px 1px 0px black;
 }
 
-.css-1d6wzja-MuiButton-startIcon{
-  
+.css-1d6wzja-MuiButton-startIcon {
   margin: 0 !important ;
 }
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   min-width: 0 !important;
   padding: 0 !important;
 }
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.avatar-24 {
+  width: 24px;
+  height: 24px;
+}
+.avatar-40 {
+  width: 40px;
+  height: 40px;
+}
+.avatar-80 {
+  width: 80px;
+  height: 80px;
+}
+

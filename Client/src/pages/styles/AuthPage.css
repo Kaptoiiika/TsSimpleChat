@@ -36,33 +36,32 @@
   display: flex;
   flex-direction: row;
 }
-.auth-card-label{
+.auth-card-label {
   display: flex;
   justify-content: center;
-  margin: 10px 0 ;
+  margin: 10px 0;
 }
 
 .send-form {
   display: flex;
   flex-direction: column;
-  color:wheat;
-  margin: 0 0 0 10px;
-}
-.send-form > * {
-  width: 480px;
+  color: wheat;
+  margin: 0  10px;
 }
 .send-btn {
   display: flex;
   justify-content: space-around;
-  margin: 0 30px  ;
-  padding: 20px 0 ;
+  margin: 0;
+  padding: 20px 0;
 }
 
 @media screen and (max-width: 600px) {
   .auth-card {
     width: 400px;
   }
-  .send-form > * {
-    width: 380px;
+}
+@media screen and (max-width: 430px) {
+  .auth-card {
+    width: 300px;
   }
 }
