@@ -9,7 +9,8 @@ const User = require("../models/User.js")
 const Create = async (req, res) => {
   try {
     const { name } = req.body
-    if (await Server.find({ name: name })) {
+    
+    if (await Server.findOne({ name: name })) {
       return res.status(400).json({
         message: `Сервер:${name} уже создан`,
       })

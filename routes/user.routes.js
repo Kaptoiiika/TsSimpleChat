@@ -56,7 +56,10 @@ const login = async (req, res) => {
       expiresIn: "30d",
     })
 
-    res.json({ token, user })
+    res.json({
+      token,
+      user: await user.populate({ path: "subscribers", select: "name" }),
+    })
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })
