@@ -3,10 +3,16 @@ import { makeAutoObservable } from "mobx"
 
 const storageName = "userData"
 class AuthData {
-  loading = false
+  loading = true
   isAuth = false
   token = ""
-  user = {}
+  user = {
+    _id: "null",
+    name: "null",
+    icon: "null",
+    subscribers: [{ _id: "null", name: "null" }],
+  }
+
   constructor() {
     makeAutoObservable(this)
   }
@@ -31,7 +37,9 @@ class AuthData {
 
   loginToken() {
     this.loading = true
-    const token = JSON.parse(localStorage.getItem(storageName) || "{}")
+    const { token } = JSON.parse(
+      localStorage.getItem(storageName) || `{"token":""}`
+    )
     axios
       .get("/api/user/auth", {
         headers: { Authorization: `Bearer ${token}` },
@@ -48,13 +56,16 @@ class AuthData {
         )
       })
       .catch((error) => {
-        console.error(this)
         this.token = ""
         localStorage.removeItem(storageName)
       })
       .finally(() => {
         this.loading = false
       })
+  }
+  logout() {
+    localStorage.removeItem(storageName)
+    window.location.reload()
   }
 }
 

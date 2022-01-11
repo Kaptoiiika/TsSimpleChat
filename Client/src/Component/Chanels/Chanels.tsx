@@ -9,9 +9,7 @@ import MuiAccordionSummary, {
 import { BsChevronRight } from "react-icons/bs"
 import { BiPlus } from "react-icons/bi"
 import "./Chanels.css"
-import { UserContext } from "../../context/UserContext"
-import { ServerContext } from "../../context/ServerContext"
-import { useHttp } from "../../hooks/http.hook"
+
 import CreateChanel from "./CreateChanel/CreateChanel"
 import Chanel from "./Chanel"
 
@@ -28,9 +26,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 }))
 
 function Chanels() {
-  // const { name, status } = useContext(UserContext)
-  const { serverName, chanelsId, serverId } = useContext(ServerContext)
-  const { request, loading } = useHttp()
+  // https://mui.com/components/lists/#simple-list
   const [chanelList, setChanelsList] = useState([
     { name: "nothing", _id: "none" },
   ])
@@ -44,105 +40,9 @@ function Chanels() {
   const handleCreateMenu = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  useEffect(() => {
-    async function getData() {
-      const data = await Promise.all(
-        chanelsId.map(async (chanel) => {
-          if (chanel !== null) {
-            return await request(`api/chanel/${chanel}`, "GET")
-          }
-        })
-      )
-      setChanelsList(data)
-    }
-    getData()
-  }, [chanelsId])
-
-  if (loading || !serverId) {
-    return (
-      <div className="Chanels">
-        <h3 className="header Chanels-header">{serverName}</h3>
-        <div className="chanels-fotter">
-          <div className="chanels-fotter-user">
-            <div className="chanels-fotter-icon">
-              <img
-                src="https://cdn.discordapp.com/avatars/782147867380285442/4acae783a7dba751a54c6306942dd0d7.webp?size=80"
-                alt=""
-              />
-            </div>
-            <div className="chanels-fotter-userData">
-              <p className="chanels-fotter-userName">{'name'}</p>
-              <p className="chanels-fotter-status">{'status'}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
   return (
     <div className="Chanels">
-      <h3 className="header Chanels-header">{serverName}</h3>
-
-      <div className="chanels-list">
-        <Accordion
-          expanded={expanded}
-          style={{
-            background: "none",
-            color: "white",
-            margin: 0,
-            padding: "5px 0",
-          }}
-          defaultExpanded
-        >
-          <AccordionSummary
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-            style={{ cursor: "default" }}
-            expandIcon={
-              <Button
-                style={{ color: "white" }}
-                onClick={handleChange}
-                startIcon={
-                  <BsChevronRight
-                    style={{ color: "white", width: "14px", height: "14px" }}
-                  />
-                }
-              />
-            }
-          >
-            <div className="Chanels-group">
-              <span style={{ margin: "0 0 0 8px" }}>Текстовые каналы</span>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <CreateChanel />
-              </Modal>
-              <Button
-                style={{ color: "white" }}
-                onClick={handleCreateMenu}
-                startIcon={<BiPlus />}
-              />
-            </div>
-          </AccordionSummary>
-          <AccordionDetails style={{ margin: 0 }}>
-            <div className="Chanel-list">
-              {chanelList.map((obj) => {
-                if (obj)
-                  return (
-                    <Chanel
-                      key={obj._id}
-                      chanelId={obj._id}
-                      chanelName={obj.name}
-                    />
-                  )
-              })}
-            </div>
-          </AccordionDetails>
-        </Accordion>
-      </div>
+      <h3 className="header Chanels-header">{`serverName`}</h3>
 
       <div className="chanels-fotter">
         <div className="chanels-fotter-user">
@@ -152,9 +52,10 @@ function Chanels() {
               alt=""
             />
           </div>
+          {/* https://mui.com/components/menus/ */}
           <div className="chanels-fotter-userData">
-            <p className="chanels-fotter-userName">{'name'}</p>
-            <p className="chanels-fotter-status">{'status'}</p>
+            <p className="chanels-fotter-userName">{"name"}</p>
+            <p className="chanels-fotter-status">{"status"}</p>
           </div>
         </div>
       </div>

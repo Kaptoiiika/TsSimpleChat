@@ -1,7 +1,6 @@
 import { TextField, Button } from "@mui/material"
 import axios from "axios"
-import { useContext, useState, useEffect } from "react"
-import { AuthContext } from "../context/AuthContext"
+import { useState } from "react"
 import "./styles/AuthPage.css"
 import AuthData from "../store/AuthData"
 import { observer } from "mobx-react-lite"
@@ -22,7 +21,7 @@ const AuthPage = observer(() => {
   function loginHandler() {
     AuthData.login(form.name, form.password)
   }
-  
+
   return (
     <div className="auth-page">
       <div className="auth-card">

@@ -6,7 +6,7 @@ import {
   CardContent,
   CardActions,
 } from "@mui/material"
-import { useContext, useState } from "react"
+import {  useState } from "react"
 
 
 function CreateChanel() {
@@ -18,14 +18,7 @@ function CreateChanel() {
   }
 
   async function createHandler() {
-    // try {
-    //   await request("api/chanel/create", "POST", {
-    //     ...form,
-    //     ownerId: auth.userId,
-    //     serverId: serverId,
-    //   })
-    //   setServerData(serverId || "aza")
-    // } catch (error) {}
+
   }
 
   return (
