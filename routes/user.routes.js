@@ -11,13 +11,6 @@ const Server = require("../models/Server.js")
 
 const registration = async (req, res) => {
   try {
-    const validErr = validationResult(req)
-    if (!validErr.isEmpty()) {
-      return res
-        .status(400)
-        .json({ message: "incorect requset", errors: validErr.errors })
-    }
-
     const { name, password } = req.body
     const candidat = await User.findOne({ name })
     if (candidat)
@@ -25,13 +18,23 @@ const registration = async (req, res) => {
         .status(400)
         .json({ message: `Пользователь ${name} уже создан` })
 
+    const validErr = validationResult(req)
+    if (!validErr.isEmpty()) {
+      return res
+        .status(400)
+        .json({ message: "incorect requset", errors: validErr.errors })
+    }
+
     const hashPassword = await bcrypt.hash(password, 6)
 
     const user = new User({ name, password: hashPassword })
     await FileManager.createDir("users", user._id)
     await user.save()
+    const token = jwt.sign({ id: user.id }, config.get("jwtKey"), {
+      expiresIn: "30d",
+    })
 
-    res.status(201).json({ message: `${name} создан` })
+    res.status(201).json({ token, user })
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })
