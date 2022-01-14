@@ -1,5 +1,3 @@
-
-
 type Props = {
   user: {
     _id: string
@@ -16,10 +14,10 @@ function Member(props: Props) {
   const { user } = props
 
   return (
-    <div className="Member" key={user._id}>
+    <div className="Member">
       <img
         className="Member-userIcon"
-        src={" "}
+        src={`/api/user/avatar/${user._id}`}
         alt=""
       />
       <div className="Member-user">

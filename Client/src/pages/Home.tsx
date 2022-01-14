@@ -14,7 +14,7 @@ import { observer } from "mobx-react-lite"
 import { useState } from "react"
 import AuthData from "../store/AuthData"
 import PreviewUser from "../Component/ProfileUser/ProfileUser"
-import MessageUser from "../Component/MessageUser/MessageUser"
+import MessageUser from "../Component/Mesenger/MessageUser/MessageUser"
 import { IoImageOutline } from "react-icons/io5"
 
 const Home = observer(() => {

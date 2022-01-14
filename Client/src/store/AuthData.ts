@@ -1,7 +1,6 @@
 import axios from "axios"
 import { makeAutoObservable } from "mobx"
 
-
 const storageName = "userData"
 class AuthData {
   firstLoad = true
@@ -12,6 +11,7 @@ class AuthData {
     _id: "null",
     name: "null",
     icon: "null",
+    status: "",
     subscribers: [{ _id: "null", name: "null" }],
   }
 
@@ -113,6 +113,17 @@ class AuthData {
   logout() {
     localStorage.removeItem(storageName)
     window.location.reload()
+  }
+  async subscribe(name: string) {
+    try {
+      const { data } = await axios.get(`api/user/subscribe/${name}`, {
+        headers: { Authorization: `Bearer ${this.token}` },
+      })
+      this.update()
+      return ""
+    } catch (error: any) {
+      return error.response.data.message
+    }
   }
 }
 

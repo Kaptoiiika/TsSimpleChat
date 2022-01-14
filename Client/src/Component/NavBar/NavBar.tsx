@@ -17,11 +17,7 @@ import AuthData from "../../store/AuthData"
 import { observer } from "mobx-react-lite"
 import ServerData from "../../store/ServerData"
 
-type Props = {
-  setServer: any
-}
-
-const Servers = observer((props: Props) => {
+const Servers = observer(() => {
   const serverList = AuthData.user.subscribers
   const [open, setOpen] = useState(false)
 
@@ -36,7 +32,7 @@ const Servers = observer((props: Props) => {
   }
 
   function home() {
-    console.log("home page")
+    ServerData.selectServer("0")
   }
 
   const toChangeServer = (_id: string) => {

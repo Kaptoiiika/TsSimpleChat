@@ -10,8 +10,8 @@
 }
 .Mesenger-list {
   grid-area: Mesenger-list;
-  padding-left: 10px;
-  margin: 3px 0;
+  padding: 10px 10px 0 10px;
+  margin: 5px 0;
   overflow: auto;
 }
 .Mesenger-fotter {

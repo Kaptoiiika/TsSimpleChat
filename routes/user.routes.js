@@ -74,12 +74,11 @@ const subscribe = async (req, res) => {
       return res
         .status(404)
         .json({ message: `server ${req.params.name} not found` })
-    if (!server.membersId.includes(user.id)) {
-      server.membersId.push(`${user._id}`)
-      user.subscribers.push(`${server._id}`)
-      server.save()
-      user.save()
-    }
+    server.members.push(`${user._id}`)
+    user.subscribers.push(`${server._id}`)
+    server.save()
+    user.save()
+
     res.json({ server, user })
   } catch (error) {
     console.log(error.message)

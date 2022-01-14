@@ -5,11 +5,12 @@ const Server = require("../models/Server.js")
 const Message = require("../models/Message.js")
 const Chanel = require("../models/Chanel.js")
 const User = require("../models/User.js")
+const { populate } = require("../models/User.js")
 
 const Create = async (req, res) => {
   try {
     const { name } = req.body
-    
+
     if (await Server.findOne({ name: name })) {
       return res.status(400).json({
         message: `Сервер:${name} уже создан`,
@@ -49,14 +50,15 @@ const Create = async (req, res) => {
 const message = async (req, res) => {
   try {
     const { msg } = req.body
-    console.log(req.params)
-    const server = await Server.findById(req.params.serverId)
+    if (!msg) res.status(400).json({ message: "msg empty" })
+    const { chanelId } = req.params
+    const chanel = await Chanel.findById(chanelId)
     const user = await User.findById(req.user.id)
+    const message = new Message({ author: user.id, text: msg })
 
-    console.log(server, user)
-
-    // await server.save()
-    // await user.save()
+    await message.save()
+    chanel.messages.push(message._id)
+    await chanel.save()
 
     res.status(201).json({ message: "msg send" })
   } catch (error) {
@@ -68,9 +70,12 @@ const getServer = async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
     const server = await Server.findById(req.params.id)
-
-    await server.populate({ path: "chanels", select: "name" })
-    console.log(server)
+    await server.populate({
+      path: "chanels",
+      select: "name",
+      populate: { path: "messages", limit: 50 },
+    })
+    await server.populate({ path: "members", select: "name", limit: 25 })
 
     res.json(server)
   } catch (error) {
@@ -105,7 +110,8 @@ const postAddUser = async (req, res) => {
 
 router.post("/adduser", postAddUser)
 router.post("/create", authMiddleware, Create)
-router.post("/:serverId/message/:chanelId", authMiddleware, message)
+
+router.post("/message/:chanelId", authMiddleware, message)
 
 router.get("/:id", authMiddleware, getServer)
 router.get("", getServer)

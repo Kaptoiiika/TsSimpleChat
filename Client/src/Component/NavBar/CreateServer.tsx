@@ -7,6 +7,7 @@ import {
 } from "@mui/material"
 
 import { useState } from "react"
+import AuthData from "../../store/AuthData"
 import ServerData from "../../store/ServerData"
 
 type Props = {
@@ -22,13 +23,13 @@ const CreateServer = (props: Props) => {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
   const handleSubscribe = async () => {
-    setError("")
+    setError(await AuthData.subscribe(form.name))
   }
 
   const handleCreate = async () => {
     const err = await ServerData.create(form.name)
     setError(err)
-    if(!err) handleTooltipClose()
+    if (!err) handleTooltipClose()
   }
 
   return (

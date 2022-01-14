@@ -1,13 +1,14 @@
-
-import Message from "./Mesage/Mesage"
+import { observer } from "mobx-react-lite"
+import ServerData from "../../store/ServerData"
+import MessageUser from "./MessageUser/MessageUser"
 import "./Mesenger.css"
 
-function Mesenger() {
-
+const Mesenger = observer(() => {
+  const messages = ServerData.chanel.messages
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
-      // sendMessage(e.target.value)
+      ServerData.sendMessage(e.target.value)
       e.target.value = ""
     }
   }
@@ -16,16 +17,17 @@ function Mesenger() {
     <div className="Mesenger">
       <h3 className="header Mesenger-header">{`chanelName`}</h3>
       <ul className="Mesenger-list">
-        {`messages.map((obj: any, index) => {
+        {messages.map((obj: any) => {
           if (obj)
             return (
-              <Message
-                message={obj.message}
-                ownerId={obj.ownerId}
-                key={index}
+              <MessageUser
+                imgUrl={`/api/user/avatar/${obj.author}`}
+                name={"Kaptoiiika13"}
+                text={obj.text}
+                key={obj.id}
               />
             )
-        })`}
+        })}
       </ul>
       <div className="Mesenger-fotter">
         <input
@@ -39,6 +41,6 @@ function Mesenger() {
       </div>
     </div>
   )
-}
+})
 
 export default Mesenger

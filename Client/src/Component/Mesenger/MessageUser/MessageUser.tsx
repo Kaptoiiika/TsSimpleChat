@@ -13,7 +13,7 @@ const MessageUser = observer((props: Props) => {
     <div className="Message">
       <img className="Message-avatar avatar avatar-40" src={imgUrl} alt="" />
       <div className="Message-content">
-        <div className="Message-content-user">{name}</div>
+        <div className="Message-content-userName">{name}</div>
         <div className="Message-content-text">{text}</div>
       </div>
     </div>
