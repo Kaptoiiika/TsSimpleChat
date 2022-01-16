@@ -49,6 +49,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 .avatar-24 {
   width: 24px;

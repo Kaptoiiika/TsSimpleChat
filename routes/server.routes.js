@@ -77,7 +77,7 @@ const getServer = async (req, res) => {
     })
     await server.populate({ path: "members", select: "name", limit: 25 })
 
-    res.json(server)
+    res.status(200).json(server)
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })
