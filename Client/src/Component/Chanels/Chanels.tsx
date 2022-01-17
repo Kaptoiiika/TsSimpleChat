@@ -32,7 +32,7 @@ const Chanels = observer(() => {
         <div className="chanels-fotter-user">
           <div className="chanels-fotter-icon">
             <img
-              className="avatar-40"
+              className="avatar-40 avatar"
               src={`/api/user/avatar/${AuthData.user._id}`}
               alt=""
             />

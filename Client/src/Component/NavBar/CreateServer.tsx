@@ -23,7 +23,9 @@ const CreateServer = (props: Props) => {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
   const handleSubscribe = async () => {
-    setError(await AuthData.subscribe(form.name))
+    const err = await AuthData.subscribe(form.name)
+    setError(err)
+    if (!err) handleTooltipClose()
   }
 
   const handleCreate = async () => {

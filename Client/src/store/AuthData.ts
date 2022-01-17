@@ -116,7 +116,7 @@ class AuthData {
   }
   async subscribe(name: string) {
     try {
-      const { data } = await axios.get(`api/user/subscribe/${name}`, {
+      await axios.get(`api/user/subscribe/${name}`, {
         headers: { Authorization: `Bearer ${this.token}` },
       })
       this.update()

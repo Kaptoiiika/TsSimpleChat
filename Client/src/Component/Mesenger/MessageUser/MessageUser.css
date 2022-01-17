@@ -19,10 +19,16 @@
   flex-direction: column;
   padding: 0 0 5px 0;
 }
+.Message-avatar-empty {
+  width: 40px;
+}
 .Message-content-userName {
   font-weight: 600;
 }
 .Message-content-text {
   text-align: left;
   overflow-wrap: anywhere;
+}
+.Message-empty {
+  margin-top: -3px !important;
 }

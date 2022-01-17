@@ -30,7 +30,11 @@ class ServerData {
     messages: [
       {
         _id: "null",
-        author: "null",
+        author: {
+          _id: "null",
+          name: "null",
+          icon: "null.jpg",
+        },
         text: "null",
         dataCreate: "null",
       },
@@ -46,7 +50,18 @@ class ServerData {
   }
 
   async chanelInfo() {
-    this.chanel = this.server.chanels[this.selectedChanel]
+    try {
+      const { data } = await axios.get(`api/chanel/${this.selectedChanel}`, {
+        headers: { Authorization: `Bearer ${AuthData.token}` },
+      })
+      console.log(data)
+      this.chanel = data
+      this.selected = data._id
+      return ""
+    } catch (error: any) {
+      console.log(error.response.data.message)
+      return error.response.data.message
+    }
   }
 
   selectServer(_id: string) {
@@ -75,13 +90,6 @@ class ServerData {
       return error.response.data.message
     }
   }
-  async subscribe() {
-    try {
-      return ""
-    } catch (error: any) {
-      return error.response.data.message
-    }
-  }
 
   async serverInfo() {
     try {
@@ -89,16 +97,17 @@ class ServerData {
         headers: { Authorization: `Bearer ${AuthData.token}` },
       })
       this.server = server
-      this.selectChanel(0)
+      this.selectChanel(server.chanels[0]._id)
       return ""
     } catch (error: any) {
       return error
     }
   }
+
   async sendMessage(msg: string) {
     try {
       console.log(this.chanel)
-      const { data } = await axios.post(
+      await axios.post(
         `api/server/message/${this.chanel._id}`,
         {
           msg,
