@@ -57,12 +57,12 @@ const message = async (req, res) => {
 const getByID = async (req, res) => {
   try {
     const chanel = await Chanel.findById(req.params.id)
-    res.json(
-      await chanel.populate({
-        path: "messages",
-        options: { limit: 3,  },
-      })
-    )
+    await chanel.populate({
+      path: "messages",
+      options: { limit: 50 },
+      populate: { path: "author", select: ["name", "icon"] },
+    })
+    res.json(chanel)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: `messages code 500 ` })
@@ -71,6 +71,7 @@ const getByID = async (req, res) => {
 
 router.post("/create", authMiddleware, postCreate)
 router.post("/message", authMiddleware, message)
+
 router.get("/:id", getByID)
 
 module.exports = router

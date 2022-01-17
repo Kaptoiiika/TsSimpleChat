@@ -29,7 +29,9 @@ const registration = async (req, res) => {
 
     const user = new User({ name, password: hashPassword })
     await FileManager.createDir("users", user._id)
+    await FileManager.createFile("users", user._id, file)
     await user.save()
+    
     const token = jwt.sign({ id: user.id }, config.get("jwtKey"), {
       expiresIn: "30d",
     })

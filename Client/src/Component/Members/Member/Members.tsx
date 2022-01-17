@@ -16,7 +16,7 @@ function Member(props: Props) {
   return (
     <div className="Member">
       <img
-        className="Member-userIcon"
+        className="Member-avatar avatar avatar-40"
         src={`/api/user/avatar/${user._id}`}
         alt=""
       />
