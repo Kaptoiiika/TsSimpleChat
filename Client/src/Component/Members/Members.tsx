@@ -11,7 +11,15 @@ const Members = observer(() => {
       <ul className="Members-list">
         {userList.map((user: any, index: number) => {
           if (user === undefined) return " "
-          return <Member user={user} key={index} />
+          return (
+            <Member
+              imgUrl={`api/user/avatar/${user._id}`}
+              name={user.name}
+              status={user.status}
+              usercolor={user.color}
+              key={index}
+            />
+          )
         })}
       </ul>
     </div>

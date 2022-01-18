@@ -1,28 +1,21 @@
 type Props = {
-  user: {
-    _id: string
-    name: string
-    icon?: string
-    status?: string
-    contact?: string
-    permison?: string
-    color?: string
-  }
+  imgUrl: string
+  name: string
+  status?: string
+  usercolor?: string
 }
 
 function Member(props: Props) {
-  const { user } = props
+  const { imgUrl, name, status, usercolor="plum" } = props
 
   return (
     <div className="Member">
-      <img
-        className="Member-avatar avatar avatar-40"
-        src={`/api/user/avatar/${user._id}`}
-        alt=""
-      />
+      <img className="Member-avatar avatar avatar-40" src={imgUrl} alt="" />
       <div className="Member-user">
-        <p className="Member-userName">{user.name}</p>
-        <p className="Member-userStatus">{user.status ? user.status : " "}</p>
+        <p className="Member-userName" style={{ color:  usercolor }}>
+          {name}
+        </p>
+        <p className="Member-userStatus">{status}</p>
       </div>
     </div>
   )

@@ -49,12 +49,25 @@ class ServerData {
     this.chanelInfo()
   }
 
+  pushMessage(message: {
+    _id: string
+    author: {
+      _id: string
+      name: string
+      icon: string
+    }
+    text: string
+    dataCreate: string
+  }) {
+    this.chanel.messages.push(message)
+    console.log(message)
+  }
+
   async chanelInfo() {
     try {
       const { data } = await axios.get(`api/chanel/${this.selectedChanel}`, {
         headers: { Authorization: `Bearer ${AuthData.token}` },
       })
-      console.log(data)
       this.chanel = data
       this.selected = data._id
       return ""
