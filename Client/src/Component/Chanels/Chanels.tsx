@@ -1,21 +1,22 @@
 import "./Chanels.css"
-import { ListItemButton,  List } from "@mui/material"
+import { ListItemButton, List } from "@mui/material"
 import { IoAdd } from "react-icons/io5"
 import { observer } from "mobx-react-lite"
 import ServerData from "../../store/ServerData"
 import AuthData from "../../store/AuthData"
+import ChanelsHeader from "./ChanelsHeader/ChanelsHeader"
 
 const Chanels = observer(() => {
-  const { name: serverName, chanels } = ServerData.server
+  const {  chanels } = ServerData.server
 
   return (
     <div className="Chanels">
-      <h3 className="header Chanels-header">{serverName}</h3>
+      <ChanelsHeader />
       <div className="Chanel-list">
-        {chanels.map((obj, index) => {
+        {chanels.map((obj) => {
           return (
             <List key={obj._id}>
-              <ListItemButton onClick={() => ServerData.selectChanel(index)}>
+              <ListItemButton onClick={() => ServerData.selectChanel(obj._id)}>
                 <div className="Chanel-name">
                   <span>{obj.name}</span>
                 </div>
@@ -37,7 +38,6 @@ const Chanels = observer(() => {
               alt=""
             />
           </div>
-          {/* https://mui.com/components/menus/ */}
           <div className="chanels-fotter-userData">
             <p className="chanels-fotter-userName">{AuthData.user.name}</p>
             <p className="chanels-fotter-status">{AuthData.user.status}</p>

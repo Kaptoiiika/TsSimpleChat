@@ -15,7 +15,7 @@
   overflow-y: scroll;
 }
 .Mesenger-list > * {
-  margin: 8px 0 0 0;
+  margin: 1rem 0 0 0;
 }
 .Mesenger-fotter {
   display: flex;

@@ -1,6 +1,6 @@
 .ProfileUser {
   width: 300px;
-  height: 280px;
+  height: 100%;
   border-radius: 10px;
   background-color: rgb(24, 25, 28);
 }
@@ -20,6 +20,7 @@
   padding: 64px 16px 16px 16px;
 }
 .ProfileUser-user-name {
+  word-wrap: break-word;
   font-family: Balsamiq Sans;
   font-size: 20px;
   color: white;

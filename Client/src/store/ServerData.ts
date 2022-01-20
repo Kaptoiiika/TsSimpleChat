@@ -4,7 +4,7 @@ import AuthData from "./AuthData"
 
 class ServerData {
   selected = "0"
-  selectedChanel = 0
+  selectedChanel = "0"
   server = {
     _id: "null",
     name: "null",
@@ -44,8 +44,8 @@ class ServerData {
   constructor() {
     makeAutoObservable(this)
   }
-  selectChanel(index: number) {
-    this.selectedChanel = index
+  selectChanel(id: string) {
+    this.selectedChanel = id
     this.chanelInfo()
   }
 
