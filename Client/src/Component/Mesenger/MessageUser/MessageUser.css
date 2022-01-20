@@ -14,22 +14,25 @@
   left: 0;
 }
 .Message-content {
-  display: flex;
-  align-items: flex-start;
   flex-direction: column;
   padding: 0 0 5px 0;
+  overflow: hidden;
 }
 .Message-avatar-empty {
+  flex-shrink: 0;
   width: 40px;
 }
 .Message-content-userName {
-
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
   font-weight: 600;
 }
 .Message-content-text {
   text-align: left;
+
   overflow-wrap: anywhere;
 }
 .Message-empty {
-  margin-top: -3px !important;
+  margin-top: 0px !important;
 }

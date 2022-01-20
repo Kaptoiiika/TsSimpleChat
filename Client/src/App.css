@@ -46,6 +46,7 @@
   padding: 0 !important;
 }
 .avatar {
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -57,6 +58,7 @@
   height: 24px;
 }
 .avatar-40 {
+  
   width: 40px;
   height: 40px;
 }

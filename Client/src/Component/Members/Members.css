@@ -13,13 +13,15 @@
   background-color: #2f3136;
   height: 100%;
   margin: 0;
-  padding-left: 10px;
+  padding: 0 10px;
+  overflow-x: auto;
 }
 
 .Member {
   display: flex;
   align-items: center;
-  margin: 8px 0 0 5px;
+  margin: 8px 0 0 0;
+  width: 100%;
 }
 .Member-avatar {
   width: 40px;
@@ -28,8 +30,13 @@
 }
 .Member-user {
   margin: 0 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
 .Member-userName {
+  text-overflow: ellipsis;
+  overflow: hidden;
   margin: 0;
 }
 .Member-userStatus {

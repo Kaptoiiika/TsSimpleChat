@@ -8,6 +8,7 @@ const User = require("../models/User.js")
 const authMiddleware = require("../middleware/auth.middleware.js")
 const FileManager = require("../services/fileManager.js")
 const Server = require("../models/Server.js")
+const fs = require("fs")
 
 const registration = async (req, res) => {
   try {
@@ -152,10 +153,15 @@ const getAvatar = async (req, res) => {
     const filePath = `${config.get("filePath")}\\users\\${user.id}\\${
       user.icon
     }`
-    res.sendFile(filePath)
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath)
+    } else {
+      const filePath = `${config.get("filePath")}\\users\\default\\unknown.png`
+      res.sendFile(filePath)
+    }
   } catch (error) {
     console.log(error.message)
-    res.status(500).json({ message: "error code 500", error: error.message })
+    res.status(404).json({ message: "kapec net kartinki" })
   }
 }
 
