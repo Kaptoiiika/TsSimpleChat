@@ -1,4 +1,5 @@
 const fs = require("fs")
+var path = require("path")
 const config = require("config")
 
 class FileManager {
@@ -24,6 +25,24 @@ class FileManager {
     return new Promise((resolve, reject) => {
       try {
         file.mv(filePath)
+        return resolve({ message: "File was created" })
+      } catch (error) {
+        return reject({
+          message: { message: "File error", error: error.message },
+        })
+      }
+    })
+  }
+
+  duplicateFile(group, dir, filePath) {
+    const NewfilePath = `${config.get(
+      "filePath"
+    )}\\${group}\\${dir}\\avatar.png`
+    return new Promise((resolve, reject) => {
+      try {
+        fs.copyFile(filePath, NewfilePath,(err)=>{
+          console.log(err)
+        })
         return resolve({ message: "File was created" })
       } catch (error) {
         return reject({

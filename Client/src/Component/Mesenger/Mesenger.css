@@ -9,10 +9,13 @@
   grid-area: Mesenger-header;
 }
 .Mesenger-list {
-  grid-area: Mesenger-list;
+  position: relative;
   padding: 10px 10px 0 10px;
   margin: 5px 0;
-  overflow: auto;
+  overflow-y: scroll;
+}
+.Mesenger-list > * {
+  margin: 1rem 0 0 0;
 }
 .Mesenger-fotter {
   display: flex;
@@ -30,5 +33,16 @@
   border: 0px;
   background-color: #40444b;
   color: white;
-  outline:none
+  outline: none;
+}
+
+.wrap_Scrollbottom {
+  grid-area: Mesenger-list;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+.container_Scrollbottom {
+  overflow-y: auto;
 }

@@ -46,7 +46,7 @@ const message = async (req, res) => {
     chanel.messages.unshift(message.id)
 
     await chanel.save()
-
+    
     res.status(201).json({ message: "messages send" })
   } catch (error) {
     console.log(error)

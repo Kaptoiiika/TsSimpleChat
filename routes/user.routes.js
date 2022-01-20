@@ -8,6 +8,7 @@ const User = require("../models/User.js")
 const authMiddleware = require("../middleware/auth.middleware.js")
 const FileManager = require("../services/fileManager.js")
 const Server = require("../models/Server.js")
+const fs = require("fs")
 
 const registration = async (req, res) => {
   try {
@@ -27,11 +28,15 @@ const registration = async (req, res) => {
 
     const hashPassword = await bcrypt.hash(password, 6)
 
-    const user = new User({ name, password: hashPassword })
+    const user = new User({ name, password: hashPassword, icon: "avatar.png" })
     await FileManager.createDir("users", user._id)
-    await FileManager.createFile("users", user._id, file)
+    await FileManager.duplicateFile(
+      "users",
+      user._id,
+      `${config.get("filePath")}\\users\\default\\avatar.png`
+    )
     await user.save()
-    
+
     const token = jwt.sign({ id: user.id }, config.get("jwtKey"), {
       expiresIn: "30d",
     })
@@ -76,12 +81,19 @@ const subscribe = async (req, res) => {
       return res
         .status(404)
         .json({ message: `server ${req.params.name} not found` })
+    if (
+      user.subscribers.find((obj) => {
+        return obj.toString() === server._id.toString()
+      })
+    ) {
+      return res.json({ message: "done" })
+    }
     server.members.push(`${user._id}`)
     user.subscribers.push(`${server._id}`)
     server.save()
     user.save()
 
-    res.json({ server, user })
+    res.json({ message: "done" })
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ message: "error code 500", error: error.message })
@@ -141,10 +153,15 @@ const getAvatar = async (req, res) => {
     const filePath = `${config.get("filePath")}\\users\\${user.id}\\${
       user.icon
     }`
-    res.sendFile(filePath)
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath)
+    } else {
+      const filePath = `${config.get("filePath")}\\users\\default\\unknown.png`
+      res.sendFile(filePath)
+    }
   } catch (error) {
     console.log(error.message)
-    res.status(500).json({ message: "error code 500", error: error.message })
+    res.status(404).json({ message: "kapec net kartinki" })
   }
 }
 

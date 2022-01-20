@@ -32,10 +32,13 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 5px 0;
   /* border-bottom: 1px solid black; */
   background-color: #36393f;
   box-shadow: 0 1px 1px 0px black;
+}
+.container{
+  width: 100%;
+  height: 100%;
 }
 
 .css-1d6wzja-MuiButton-startIcon {
@@ -46,6 +49,7 @@
   padding: 0 !important;
 }
 .avatar {
+  flex-shrink: 0;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -55,6 +59,10 @@
 .avatar-24 {
   width: 24px;
   height: 24px;
+}
+.avatar-32{
+  width: 32px;
+  height: 32px;
 }
 .avatar-40 {
   width: 40px;

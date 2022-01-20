@@ -4,7 +4,7 @@ import MessageUser from "./MessageUser/MessageUser"
 import "./Mesenger.css"
 
 const Mesenger = observer(() => {
-  const messages = ServerData.chanel.messages
+  const { messages, name } = ServerData.chanel
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter") {
@@ -15,20 +15,34 @@ const Mesenger = observer(() => {
 
   return (
     <div className="Mesenger">
-      <h3 className="header Mesenger-header">{`chanelName`}</h3>
+      <h3 className="header Mesenger-header">{name}</h3>
+
       <ul className="Mesenger-list">
-        {messages.map((obj: any) => {
+        {messages.map((obj: any, index, array) => {
           if (obj)
-            return (
-              <MessageUser
-                imgUrl={`/api/user/avatar/${obj.author}`}
-                name={"Kaptoiiika13"}
-                text={obj.text}
-                key={obj.id}
-              />
-            )
+            if (index > 0)
+              if (messages[index - 1].author._id === obj.author._id)
+                return (
+                  <MessageUser
+                    imgUrl={`api/user/avatar/${obj.author._id}`}
+                    name={obj.author.name}
+                    text={obj.text}
+                    key={obj._id}
+                    noUser
+                  />
+                )
+          return (
+            <MessageUser
+              imgUrl={`api/user/avatar/${obj.author._id}`}
+              name={obj.author.name}
+              text={obj.text}
+              key={obj._id}
+            />
+          )
         })}
+        <div className="wrapper_Scrollbottom"></div>
       </ul>
+
       <div className="Mesenger-fotter">
         <input
           className="Mesenger-input"

@@ -1,5 +1,4 @@
 import { TextField, Button } from "@mui/material"
-import axios from "axios"
 import { useState } from "react"
 import "./styles/AuthPage.css"
 import AuthData from "../store/AuthData"

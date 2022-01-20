@@ -3,7 +3,12 @@ const config = require("config")
 const mongoose = require("mongoose")
 const fileUpload = require("express-fileupload")
 
-const app = express()
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 
 app.use(fileUpload({}))
 app.use(express.urlencoded())
@@ -13,6 +18,11 @@ app.use("/api/user", require("./routes/user.routes.js"))
 app.use("/api/server", require("./routes/server.routes.js"))
 app.use("/api/chanel", require("./routes/chanel.routes.js"))
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+
 const PORT = config.get("port")
 
 async function start() {
@@ -21,7 +31,7 @@ async function start() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server started on port: ${PORT}...`)
     })
   } catch (error) {
