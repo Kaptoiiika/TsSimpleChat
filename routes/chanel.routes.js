@@ -47,7 +47,7 @@ const message = async (req, res) => {
 
     await chanel.save()
     
-    res.status(201).json({ message: "messages send" })
+    res.status(200)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: `messages code 500 ` })

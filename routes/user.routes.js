@@ -195,7 +195,6 @@ router.get("/auth", authMiddleware, auth)
 router.get("/update", authMiddleware, update)
 
 router.get("/avatar/:id", getAvatar)
-router.get("/:id/", getUser)
-router.get("/", getUser)
+router.get("/:id", getUser)
 
 module.exports = router
