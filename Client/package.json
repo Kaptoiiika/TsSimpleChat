@@ -52,5 +52,6 @@
   "devDependencies": {
     "@types/material-ui": "^0.21.12",
     "@types/react-tap-event-plugin": "0.0.31"
-  }
+  },
+  "proxy": "http://localhost:4030"
 }
