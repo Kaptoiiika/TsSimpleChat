@@ -63,10 +63,14 @@
   margin: 0 0 0 8px;
 }
 .chanels-fotter-userName {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
   margin: 0;
 }
 .chanels-fotter-status {
-  text-align: left;
+  color: rgb(185,187,190);
+  font-size: 0.8em;
   margin: 0;
 }
 .chanels-fotter-icon {

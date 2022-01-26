@@ -82,6 +82,23 @@ class AuthData {
     }
   }
 
+  async updateInfo(status: string, social: string) {
+    try {
+      await axios.post(
+        "api/user/updateInfo",
+        {
+          status: status,
+          social: social,
+        },
+        {
+          headers: { Authorization: `Bearer ${this.token}` },
+        }
+      )
+    } catch (error: any) {
+      return error.response.data.message
+    }
+  }
+
   loginToken() {
     const { token } = JSON.parse(
       localStorage.getItem(storageName) || `{"token":""}`

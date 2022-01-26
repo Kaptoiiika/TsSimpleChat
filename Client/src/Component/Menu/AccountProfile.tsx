@@ -25,6 +25,7 @@ const AccountProfile = observer((props: Props) => {
 
   const setStatus = () => {
     AuthData.user.status = form
+    AuthData.updateInfo(form, "@boar")
     setIsChange(false)
   }
 

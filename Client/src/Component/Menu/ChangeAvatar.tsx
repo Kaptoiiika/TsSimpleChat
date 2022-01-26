@@ -14,7 +14,6 @@ import MessageUser from "../../Component/Mesenger/MessageUser/MessageUser"
 import { IoImageOutline } from "react-icons/io5"
 import { observer } from "mobx-react-lite"
 import AuthData from "../../store/AuthData"
-
 import axios from "axios"
 
 type Props = {

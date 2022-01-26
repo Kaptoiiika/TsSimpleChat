@@ -75,7 +75,7 @@ const getServer = async (req, res) => {
       select: "name",
       populate: { path: "messages", limit: 50 },
     })
-    await server.populate({ path: "members", select: "name", limit: 25 })
+    await server.populate({ path: "members", limit: 25 })
 
     res.status(200).json(server)
   } catch (error) {

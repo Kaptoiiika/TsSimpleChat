@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import ServerData from "../../store/ServerData"
-import Member from "./Member/Members"
+import Member from "./Member/Member"
 import "./Members.css"
 
 const Members = observer(() => {

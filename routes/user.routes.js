@@ -176,6 +176,22 @@ const getUser = async (req, res) => {
   }
 }
 
+const updateInfo = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+    const { status, social } = req.body
+
+    user.status = status
+    user.social = social
+    user.save()
+
+    res.json({ message: "done" })
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).json({ message: "error code 500", error: error.message })
+  }
+}
+
 router.post(
   "/register",
   [
@@ -187,8 +203,10 @@ router.post(
   ],
   registration
 )
+
 router.post("/login", login)
 router.post("/upload/avatar", authMiddleware, avatar)
+router.post("/updateInfo", authMiddleware, updateInfo)
 
 router.get("/subscribe/:name", authMiddleware, subscribe)
 router.get("/auth", authMiddleware, auth)
