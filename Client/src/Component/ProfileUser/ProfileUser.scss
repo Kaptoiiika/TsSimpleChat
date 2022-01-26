@@ -1,0 +1,38 @@
+.ProfileUser {
+
+  height: 100%;
+  border-radius: 10px;
+  background-color: rgb(24, 25, 28);
+
+  &-banner {
+    height: 60px;
+    border-radius: 10px 10px 0 0;
+    background-color: rgb(203, 186, 180);
+  }
+  &-avatar {
+    margin: -40px 0 0 16px;
+    border: 6px solid var(--background-floating);
+    background-color: rgb(24, 25, 28);
+  }
+
+  &-user {
+    margin: -46px 0 0 0;
+    padding: 64px 16px 16px 16px;
+    &-name {
+      word-wrap: break-word;
+      font-family: Balsamiq Sans;
+      font-size: 20px;
+      color: white;
+    }
+    &-line {
+      margin: 0 16px;
+      height: 1px;
+      background-color: rgb(38, 39, 41);
+    }
+    &-status {
+      font-size: 16px;
+      padding: 12px 16px 16px 16px;
+      color: rgb(185, 187, 190);
+    }
+  }
+}

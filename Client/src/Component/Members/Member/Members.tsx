@@ -42,7 +42,7 @@ function Member(props: Props) {
         onClose={handleOpen}
         transformOrigin={{ horizontal: "right", vertical: "center" }}
       >
-        <div style={{ zIndex: 100 }}>
+        <div style={{ width: "300px", zIndex: 100 }}>
           <ProfileUser imgUrl={imgUrl} name={name} status={status} />
         </div>
       </Menu>

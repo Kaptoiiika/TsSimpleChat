@@ -1,4 +1,4 @@
-import "./ProfileUser.css"
+import "./ProfileUser.scss"
 import { observer } from "mobx-react-lite"
 
 type Props = {

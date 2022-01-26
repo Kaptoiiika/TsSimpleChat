@@ -14,11 +14,11 @@ const ApplicationPage = observer(() => {
       {ServerData.selected === "0" ? (
         <HomePage />
       ) : (
-        <>
+        <div className="ServerWrapper" >
           <Chanels />
           <Mesenger />
           <Members />
-        </>
+        </div>
       )}
     </div>
   )

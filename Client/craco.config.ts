@@ -7,14 +7,6 @@ module.exports = {
   devServer: {
     compress: true,
     inline: true,
-    port: '80',
-    disableHostCheck: true,
-    allowedHosts: [
-        '.amazonaws.com',
-        "ns1.jino.ru",
-        "0.0.0.0"
-    ]
+    port: '3000',
   },
-  
-   
 }

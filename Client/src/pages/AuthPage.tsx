@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material"
+import {  Button } from "@mui/material"
 import { useState } from "react"
 import "./styles/AuthPage.css"
 import AuthData from "../store/AuthData"
@@ -25,28 +25,38 @@ const AuthPage = observer(() => {
       <div className="auth-card">
         <div className="auth-card-label">Шутки</div>
         <div className="send-form">
-          <TextField
-            type="name"
-            onChange={changeHandler}
-            id="name"
-            error={!!error}
-            margin="dense"
-            label="name"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            fullWidth
-            type="password"
-            className="password"
-            onChange={changeHandler}
-            margin="dense"
-            error={!!error}
-            helperText={error}
-            id="password"
-            label="password"
-            variant="standard"
-          />
+          <label className="send-form-label">
+            Имя пользователя{" "}
+            <label className="send-form-label-error">
+              {error ? " - " + error : ""}
+            </label>
+          </label>
+
+          <div className="input-wrapper">
+            <input
+              style={{ borderColor: !!error ? "red" : "" }}
+              className="send-form-input"
+              type="username"
+              onChange={changeHandler}
+              id="name"
+            />
+          </div>
+
+          <label className="send-form-label">
+            Пароль{" "}
+            <label className="send-form-label-error">
+              {error ? " - " + error : ""}
+            </label>
+          </label>
+          <div className="input-wrapper">
+            <input
+              style={{ borderColor: !!error ? "red" : "" }}
+              className="send-form-input"
+              type="password"
+              onChange={changeHandler}
+              id="password"
+            />
+          </div>
         </div>
         <div className="send-btn">
           <Button
