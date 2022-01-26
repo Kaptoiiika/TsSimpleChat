@@ -3,12 +3,11 @@ const config = require("config")
 const mongoose = require("mongoose")
 const fileUpload = require("express-fileupload")
 
-const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
-
+const app = express()
+const http = require("http")
+const server = http.createServer(app)
+const { Server } = require("socket.io")
+const io = new Server(server)
 
 app.use(fileUpload({}))
 app.use(express.urlencoded())
@@ -18,10 +17,12 @@ app.use("/api/user", require("./routes/user.routes.js"))
 app.use("/api/server", require("./routes/server.routes.js"))
 app.use("/api/chanel", require("./routes/chanel.routes.js"))
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-});
-
+io.on("connection", (socket) => {
+  console.log("a user connected")
+  socket.on("chat message", (msg) => {
+    console.log("message: " + msg)
+  })
+})
 
 const PORT = config.get("port")
 

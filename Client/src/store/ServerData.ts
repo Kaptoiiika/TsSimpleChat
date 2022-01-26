@@ -1,5 +1,6 @@
 import axios from "axios"
 import { makeAutoObservable } from "mobx"
+import socket from "../webSocket"
 import AuthData from "./AuthData"
 
 class ServerData {
@@ -119,6 +120,8 @@ class ServerData {
 
   async sendMessage(msg: string) {
     try {
+      socket.emit('chat message', msg);
+
       console.log(this.chanel)
       await axios.post(
         `api/server/message/${this.chanel._id}`,
