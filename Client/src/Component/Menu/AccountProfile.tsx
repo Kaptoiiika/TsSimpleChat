@@ -6,10 +6,10 @@ import ChangeAvatar from "./ChangeAvatar"
 type Props = {}
 
 const AccountProfile = observer((props: Props) => {
+  const { name, status, _id } = AuthData.user
   const [open, setopen] = useState(false)
   const [isChange, setIsChange] = useState(false)
-  const [form, setForm] = useState("")
-  const { name, status, _id } = AuthData.user
+  const [form, setForm] = useState(status)
 
   const handleOpen = () => {
     setopen(true)

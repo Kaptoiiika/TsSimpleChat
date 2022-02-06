@@ -61,7 +61,6 @@ class ServerData {
     dataCreate: string
   }) {
     this.chanel.messages.push(message)
-    console.log(message)
   }
 
   async chanelInfo() {
@@ -120,7 +119,7 @@ class ServerData {
 
   async sendMessage(msg: string) {
     try {
-      socket.emit('chat message', msg);
+      socket.emit("chat message", msg)
 
       console.log(this.chanel)
       await axios.post(

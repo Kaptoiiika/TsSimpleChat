@@ -2,5 +2,6 @@
   "port": 4030,
   "mongoURL":"mongodb+srv://kaptoiiika:123@cluster0.yzzks.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "jwtKey":"haha",
-  "filePath":"C:\\Users\\student_okb\\AppData\\Local\\Frontend\\TsSimpleChat\\files"
+  "filePathz":"C:\\Users\\student_okb\\AppData\\Local\\Frontend\\TsSimpleChat\\files",
+  "filePath":"C:\\Users\\Nikita\\Documents\\MyProjects\\TsSimpleChat\\files"
 }

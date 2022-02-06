@@ -7,6 +7,7 @@ module.exports = {
   devServer: {
     compress: true,
     inline: true,
-    port: '3000',
+    port: '80',
+    disableHostCheck: true,
   },
 }

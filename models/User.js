@@ -7,7 +7,7 @@ const schema = new Schema({
   status: { type: String },
   social: { type: String },
   subscribers: [{ type: Types.ObjectId, ref: "Server" }],
-})
+})  
 
 schema.set("toJSON", {
   transform: (doc, { __v, password, ...rest }) => rest,
